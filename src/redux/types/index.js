@@ -1,2 +1,5 @@
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
+export const SUBMIT_REGISTER = 'SUBMIT_REGISTER';
 export const ON_LOGIN_ERROR = 'ON_LOGIN_ERROR';
+export const ON_REGISTER_ERROR = 'ON_SUBMIT_ERROR';
+export const LOGOUT = 'LOGOUT';

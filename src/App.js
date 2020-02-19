@@ -2,8 +2,8 @@ import React from 'react';
 import './App.sass';
 import {BrowserRouter, Route} from 'react-router-dom';
 import LoginContainer from './components/pages/Login/LoginContainer';
-import Register from './components/pages/Register/Register';
-import Main from './components/pages/Main/Main';
+
+import ContainerRegister from './components/pages/Register/ContainerRegister';
 import MainContainer from './components/pages/Main/MainContainer';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
                  render={ () => <LoginContainer />}/>
 
         <Route path='/register'
-                render={ () => <Register/>}/>
+                render={ () => <ContainerRegister/>}/>
       </div>
     </BrowserRouter>
   );

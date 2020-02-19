@@ -4,8 +4,8 @@ import {Field, reduxForm} from 'redux-form'
 
 import { validateLength, isEmail } from '../../../../utils/validators/validator'
 import FormInput from '../../../common/FormInput'
-import { connect } from 'react-redux'
-import * as R from 'ramda'
+// import { connect } from 'react-redux'
+// import * as R from 'ramda'
 
 
 const maxLength = validateLength(4, 20)

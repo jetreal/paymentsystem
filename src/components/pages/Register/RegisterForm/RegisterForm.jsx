@@ -1,9 +1,11 @@
 import React from 'react'
 import style from './form.module.sass'
 import {Field, reduxForm} from 'redux-form'
+import { validateLength, isEmail, required } from '../../../../utils/validators/validator'
+import FormInput from '../../../common/FormInput'
 
 
-// let maxLength20 = maxLengthCreator(20)
+const maxLength = validateLength(4, 20)
 
 const RegisterForm = (props) => {
 
@@ -13,43 +15,47 @@ const RegisterForm = (props) => {
       <form onSubmit={props.handleSubmit}>
         <div className={style.textbox}>
           <Field
-            component={'input'} 
+            component={FormInput} 
             name={'username'} 
             type={"text"} 
             placeholder={"Username"} 
             className={style.regInput} 
             autoComplete="off"
-            // validate={[required, maxLength20]}
+            validate={[required]}
           />
         </div>
 
         <div className={style.textbox}>
           <Field
-            component={'input'} 
+            component={FormInput} 
             name={'email'} 
             type={"email"} 
             placeholder={"Email"} 
             className={style.regInput} 
             autoComplete="off"
+            validate={[isEmail, required]}
           />
         </div>
 
         <div className={style.textbox}>
           <Field 
-            component={'input'} 
+            component={FormInput} 
             name={'password'} 
             type={"password"} 
             placeholder={"Password"} 
             className={style.regInput} 
             autoComplete="off"
+            validate={[maxLength, required]}
           />
         </div>
 
         <input 
           type="submit" 
           className={style.btn} 
-          value="Sign in"
+          value="Register"
           onClick={props.collectUserData}
+          disabled={props.pristine || props.submitting}
+          style={(props.pristine || props.submitting || props.invalid ) ? {opacity: 0.4} : {opacity: 1}}
         />
 
       </form>

@@ -10,8 +10,10 @@ export default (props) => {
 	const onSubmit = (data) => {
 		props.onSubmitLoginAsync(data)
 	}
-	console.log(props)
-	// if (props)
+
+	if (props.LoginState.loginData.isAuth) {
+		return <Redirect to="/" />
+	}
 
 	return (
 		<div className={style.loginBox}>

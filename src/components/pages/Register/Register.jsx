@@ -4,10 +4,10 @@ import RegisterForm from './RegisterForm/RegisterForm'
 import FormWarning from './FormWarning/FormWarning'
 
 
-export default () => {
-  
-  const collectUserData = (formData) => {
-    console.log(formData)
+export default (props) => {
+  const onRegisterSubmit = (formData) => {
+    props.onSubmitRegisterAsync(formData)
+    // console.log(formData)
   }
 
 	return (
@@ -16,8 +16,9 @@ export default () => {
 		<div className={style.loginBox}>
 			<h1>Register</h1>
 
-      <RegisterForm onSubmit={collectUserData}/>
-      <FormWarning />
+      <RegisterForm onSubmit={onRegisterSubmit}/>
+      {props.LoginState.warningText && 
+			<FormWarning warningText={props.LoginState.warningText}/>}
 		</div>
 	)
 }
