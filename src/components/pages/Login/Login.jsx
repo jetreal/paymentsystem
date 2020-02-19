@@ -1,20 +1,25 @@
 import React from 'react'
 import style from './login.module.sass'
-import LoginForm from './LoginForm/LoginForm'
+import FormContainer from './LoginForm/LoginForm'
 import FormWarning from '../Register/FormWarning/FormWarning'
+import { NavLink, Redirect } from 'react-router-dom'
 
 
 
 export default (props) => {
 	const onSubmit = (data) => {
-		// console.log(data)
 		props.onSubmitLoginAsync(data)
 	}
+	console.log(props)
+	// if (props)
 
 	return (
 		<div className={style.loginBox}>
-			<LoginForm onSubmit={onSubmit}/>
-			<FormWarning waningText={props.warning}/>
+			<FormContainer onSubmit={onSubmit}/>
+			{props.LoginState.warningText && 
+			<FormWarning warningText={props.LoginState.warningText}/>}
+			<NavLink to='/'>Main</NavLink>
 		</div>
+			
 	)
 }

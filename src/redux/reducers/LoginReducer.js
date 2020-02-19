@@ -1,5 +1,4 @@
-import { SUBMIT_LOGIN } from "../types";
-
+import { SUBMIT_LOGIN, ON_LOGIN_ERROR } from "../types";
 
 let initialState = {
   warningText: '',
@@ -17,10 +16,27 @@ const LoginReducer = (state = initialState, action) => {
       case (action.type === SUBMIT_LOGIN): {
         console.log(action)
         let stateCopy = {...state}
-        stateCopy.jwt = action.loginData.id_token;
-        stateCopy.loginData.loginEmail = action.loginData.email;
-        stateCopy.loginData.loginPassword = action.loginData.password;
+        stateCopy.jwt = action.loginData.data.id_token;
+        stateCopy.loginData.loginEmail = action.email;
+        stateCopy.loginData.loginPassword = action.password;
+        stateCopy.loginData.isAuth = true;
+        stateCopy.warningText = 'Success'
  
+        return stateCopy
+      }
+      case (action.type === ON_LOGIN_ERROR): {
+        console.log(action)
+        let stateCopy = {...state}
+
+        if (action.errorData === '400') {
+          stateCopy.warningText = 'Заполните все поля!'
+        }
+
+        if (action.errorData === '401') {
+          stateCopy.warningText = 'Логин или пароль ошибочны!'
+        }
+
+
         return stateCopy
       }
       default:

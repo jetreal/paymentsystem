@@ -5,8 +5,10 @@ import { onSubmitLoginAsync } from '../../../redux/actions';
 
 
 let mapStateToProps = (state) => {
+  // console.log(state)
     return {
-        LoginState: state.LoginReducer
+        LoginState: state.LoginReducer,
+        form: state.form.login
     } 
 }
 

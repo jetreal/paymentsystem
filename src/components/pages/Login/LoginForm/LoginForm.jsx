@@ -5,8 +5,7 @@ import {Field, reduxForm} from 'redux-form'
 import { validateLength, isEmail } from '../../../../utils/validators/validator'
 import FormInput from '../../../common/FormInput'
 import { connect } from 'react-redux'
-const R = require('ramda');
-
+import * as R from 'ramda'
 
 
 const maxLength = validateLength(4, 20)
@@ -37,39 +36,30 @@ let LoginForm = (props) => {
             autoComplete="off"
             validate={[maxLength]}
           />
-          
         </div>
-
+        
         <input 
           type="submit" 
           className={style.btn} 
           value="Sign in"
           onClick={props.collectUserData}
           disabled={props.pristine || props.submitting}
-          style={(props.pristine || props.submitting ) ? {opacity: 0.3} : {opacity: 1}}
+          style={(props.pristine || props.submitting || props.invalid ) ? {opacity: 0.4} : {opacity: 1}}
         />
       </form>
 	)
 }
 
 
+const WrapLoginForm = reduxForm({
+    // a unique name for the form
+    form: 'login',
+    onSubmit: value => console.log('second', value),
+    initialValues: {
+      email: 'jet@gmail.com',
+      password: 'jet3333'
+    }
+  })(LoginForm)
+  
 
-const LoginReduxForm = reduxForm({
-  // a unique name for the form
-  form: 'login',
-  onSubmit: value => console.log('second', value),
-  // initialValues: {
-  //   email: 'r',
-  //   password: 'r'
-  // }
-
-
-})(LoginForm)
-
-export default LoginReduxForm
-
-// LoginForm = connect(
-//   state => ({
-//     valid: isValid('myForm')(state)
-//   })
-// )(LoginForm)
+export default WrapLoginForm

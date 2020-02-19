@@ -7,7 +7,7 @@ const FormWarning = (props) => {
 	return (
     <div className={style.formWarning}>
 			<p>
-				error will be here
+				{props.warningText}
 			</p>
 		</div>
 	)
