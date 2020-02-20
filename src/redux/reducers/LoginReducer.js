@@ -1,6 +1,7 @@
-import { SUBMIT_LOGIN, ON_LOGIN_ERROR, LOGOUT, ON_REGISTER_ERROR, SUBMIT_REGISTER, CLEAR_FORM_WARNING } from "../types";
+import { SUBMIT_LOGIN, ON_LOGIN_ERROR, LOGOUT, ON_REGISTER_ERROR, SUBMIT_REGISTER, CLEAR_FORM_WARNING, CHANGE_PAGE_WITH_DELAY } from "../types";
 
 let initialState = {
+  isChangePage: false,
   isRegisterSucces: true,
   warningText: '',
   jwt: '',
@@ -13,6 +14,15 @@ let initialState = {
 
 const LoginReducer = (state = initialState, action) => {
   switch (true) {
+    case (action.type === CHANGE_PAGE_WITH_DELAY): {
+      let stateCopy = { ...state }
+      if (stateCopy.isRegisterSucces) {
+        stateCopy.isChangePage = true
+        stateCopy.isRegisterSucces = false
+      }
+    
+      return stateCopy
+    }
     case (action.type === CLEAR_FORM_WARNING): {
       let stateCopy = { ...state }
       stateCopy.warningText = ''

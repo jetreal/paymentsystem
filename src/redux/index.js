@@ -1,9 +1,18 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { reducer as formReducer } from 'redux-form';
 import LoginReducer from "./reducers/LoginReducer";
+
 import ReduxThunk from 'redux-thunk';
 
-const middleware = [ReduxThunk]
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from "./sagas";
+
+
+
+const sagaMiddleware = createSagaMiddleware()
+
+
+const middleware = [ReduxThunk, sagaMiddleware]
 
 let reducers = combineReducers({
   LoginReducer,
@@ -14,7 +23,11 @@ let store = createStore(
   reducers,
   applyMiddleware(...middleware)
   );
+  
+  
+sagaMiddleware.run(rootSaga)
 
 window.store = store;
 
 export default store;
+

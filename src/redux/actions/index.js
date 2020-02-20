@@ -1,10 +1,11 @@
 
-import { SUBMIT_LOGIN,
-         ON_LOGIN_ERROR,
-         LOGOUT, SUBMIT_REGISTER,
-         ON_REGISTER_ERROR,
-         CLEAR_FORM_WARNING 
-        } from "../types";
+import {
+  SUBMIT_LOGIN,
+  ON_LOGIN_ERROR,
+  LOGOUT, SUBMIT_REGISTER,
+  ON_REGISTER_ERROR,
+  CLEAR_FORM_WARNING
+} from "../types";
 import { getToken, registration } from "../../api/api";
 import { reset } from 'redux-form';
 import { saveState } from "../localStorage";
@@ -17,23 +18,23 @@ export function onClearFromWarning() {
 
 export function onLogout() {
   return {
-      type: LOGOUT
-    }
+    type: LOGOUT
   }
+}
 
 export function onSubmitLogin(loginData) {
   return {
-      type: SUBMIT_LOGIN,
-      loginData
-    }
+    type: SUBMIT_LOGIN,
+    loginData
   }
+}
 
 export function onLoginError(errorData) {
   return {
-      type: ON_LOGIN_ERROR,
-      errorData
-    }
+    type: ON_LOGIN_ERROR,
+    errorData
   }
+}
 
 export const onSubmitLoginAsync = (loginData) => async (dispatch) => {
   try {
@@ -51,16 +52,16 @@ export const onSubmitLoginAsync = (loginData) => async (dispatch) => {
 /////////////////////////////////////////
 export function onSubmitRegister(servResponce) {
   return {
-      type: SUBMIT_REGISTER,
-      servResponce
-    }
+    type: SUBMIT_REGISTER,
+    servResponce
   }
+}
 export function onSubmitError(errorData) {
   return {
-      type: ON_REGISTER_ERROR,
-      errorData
-    }
+    type: ON_REGISTER_ERROR,
+    errorData
   }
+}
 
 export const onSubmitRegisterAsync = (registerData) => async (dispatch) => {
   try {
