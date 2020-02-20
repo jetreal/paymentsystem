@@ -1,8 +1,19 @@
 
-import { SUBMIT_LOGIN, ON_LOGIN_ERROR, LOGOUT, SUBMIT_REGISTER, ON_REGISTER_ERROR } from "../types";
+import { SUBMIT_LOGIN,
+         ON_LOGIN_ERROR,
+         LOGOUT, SUBMIT_REGISTER,
+         ON_REGISTER_ERROR,
+         CLEAR_FORM_WARNING 
+        } from "../types";
 import { getToken, registration } from "../../api/api";
 import { reset } from 'redux-form';
 import { saveState } from "../localStorage";
+
+export function onClearFromWarning() {
+  return {
+    type: CLEAR_FORM_WARNING
+  }
+}
 
 export function onLogout() {
   return {
@@ -38,10 +49,10 @@ export const onSubmitLoginAsync = (loginData) => async (dispatch) => {
 }
 
 /////////////////////////////////////////
-export function onSubmitRegister(registerData) {
+export function onSubmitRegister(servResponce) {
   return {
       type: SUBMIT_REGISTER,
-      registerData
+      servResponce
     }
   }
 export function onSubmitError(errorData) {
@@ -51,9 +62,9 @@ export function onSubmitError(errorData) {
     }
   }
 
-export const onSubmitRegisterAsync = (regiserData) => async (dispatch) => {
+export const onSubmitRegisterAsync = (registerData) => async (dispatch) => {
   try {
-    const response = await registration(regiserData)
+    const response = await registration(registerData)
     console.log(response)
 
     dispatch(onSubmitRegister(response))

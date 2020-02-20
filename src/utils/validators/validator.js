@@ -5,7 +5,7 @@ export const required = value => {
 }
 
 
-export const validateLength = (minLength, maxLength) => (value = 0) => {
+export const validateLength = (minLength = 0, maxLength) => (value = 0) => {
   if (value.length < minLength && value.length !== 0) {
     return `* Min length is ${minLength} symbols`
   }

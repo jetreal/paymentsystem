@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
 import Register from './Register';
-import { onSubmitRegisterAsync } from '../../../redux/actions';
+import { onSubmitRegisterAsync, onClearFromWarning } from '../../../redux/actions';
+import RegisterReduxForm from './RegisterForm/RegisterForm';
 
 
 let mapStateToProps = (state) => {
@@ -14,12 +15,14 @@ let mapStateToProps = (state) => {
 
 
 
-const CenterContainer = connect(
+const RegisterContainer = connect(
   mapStateToProps,
     {
-      onSubmitRegisterAsync
+      onSubmitRegisterAsync,
+      onClearFromWarning
     }
 )(Register)
 
-export default CenterContainer
+
+export default RegisterContainer
 

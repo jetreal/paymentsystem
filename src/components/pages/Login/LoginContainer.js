@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Login from './Login';
-import { onSubmitLoginAsync } from '../../../redux/actions';
+import { onSubmitLoginAsync, onClearFromWarning } from '../../../redux/actions';
 
 
 let mapStateToProps = (state) => {
@@ -17,7 +17,8 @@ let mapStateToProps = (state) => {
 const CenterContainer = connect(
   mapStateToProps,
     {
-      onSubmitLoginAsync
+      onSubmitLoginAsync,
+      onClearFromWarning
     }
 )(Login)
 

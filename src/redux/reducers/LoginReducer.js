@@ -1,6 +1,7 @@
-import { SUBMIT_LOGIN, ON_LOGIN_ERROR, LOGOUT, ON_REGISTER_ERROR, SUBMIT_REGISTER } from "../types";
+import { SUBMIT_LOGIN, ON_LOGIN_ERROR, LOGOUT, ON_REGISTER_ERROR, SUBMIT_REGISTER, CLEAR_FORM_WARNING } from "../types";
 
 let initialState = {
+  isRegisterSucces: true,
   warningText: '',
   jwt: '',
   loginData: {
@@ -12,8 +13,12 @@ let initialState = {
 
 const LoginReducer = (state = initialState, action) => {
   switch (true) {
+    case (action.type === CLEAR_FORM_WARNING): {
+      let stateCopy = { ...state }
+      stateCopy.warningText = ''
+      return stateCopy
+    }
     case (action.type === LOGOUT): {
-      console.log(action)
       let stateCopy = { ...state }
       stateCopy.loginData.isAuth = false;
       return stateCopy
@@ -27,9 +32,14 @@ const LoginReducer = (state = initialState, action) => {
       return stateCopy
     }
     case (action.type === SUBMIT_REGISTER): {
-      console.log(action)
+
       let stateCopy = { ...state }
-      stateCopy.warningText = action.registerData
+      stateCopy.warningText = action.servResponce
+
+      if (action.servResponce.status && action.servResponce.status === 201) {
+        stateCopy.warningText = action.servResponce.statusText
+        stateCopy.isRegisterSucces = true
+      }
       return stateCopy
     }
     case (action.type === ON_LOGIN_ERROR): {
@@ -49,7 +59,7 @@ const LoginReducer = (state = initialState, action) => {
       console.log(action)
       let stateCopy = { ...state }  
 
-        stateCopy.warningText = action
+        // stateCopy.warningText = action
 
       return stateCopy
     }

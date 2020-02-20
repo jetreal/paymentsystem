@@ -5,7 +5,7 @@ export default ({input, meta, ...props}) => {
     <div>
       <input {...input} {...props}/>
       <br/>
-      { (meta.error && meta.touched) && <span style={{color: 'yellow', fontSize: ".8rem"}}>{meta.error}</span> } 
+      { (meta.error && meta.visited) && <span style={{color: 'yellow', fontSize: ".8rem"}}>{meta.error}</span> } 
     </div>
   )
 }
