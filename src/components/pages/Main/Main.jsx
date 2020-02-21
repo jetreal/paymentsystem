@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import style from './main.module.sass'
+import { NavLink } from 'react-router-dom';
+import LoginButton from '../../common/LoginButton/LoginButton';
 
 
 export default (props) => {
@@ -10,16 +12,18 @@ export default (props) => {
     }
 
   });
-
   console.log(props)
   return (
     <div className={style.main}>
+      {/* <NavLink to="/login"> */}
+        <LoginButton name="logout" logout={props.onLogout}/>
+      {/* </NavLink> */}
       Hello: {props.MainState.userData.name}
 
-      <button onClick={props.onLogout}> log out </button>
+  
       <br/>
       <br/>
-      <button onClick={props.onFetchUserDataAsync}> FetchUserData </button>
+      
       <p>id: {props.MainState.userData.id}</p>
       <p>name: {props.MainState.userData.name}</p>
       <p>email: {props.MainState.userData.email}</p>

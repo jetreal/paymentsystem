@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './form.module.sass'
 import {Field, reduxForm} from 'redux-form'
-import { validateLength, isEmail, required } from '../../../../utils/validators/validator'
+import { validateLength, isEmail, required, passwordsMustMatch } from '../../../../utils/validators/validator'
 import FormInput from '../../../common/FormInput'
 
 
@@ -51,6 +51,18 @@ const RegisterForm = (props) => {
           />
         </div>
 
+        <div className={style.textbox}>
+          <Field 
+            component={FormInput} 
+            name={'confirmPassword'} 
+            type={"password"} 
+            placeholder={"Confirm Password"} 
+            className={style.regInput} 
+            autoComplete="off"
+            validate={[passwordsMustMatch, required]}
+          />
+        </div>
+        
         <input 
           type="submit" 
           className={style.btn} 

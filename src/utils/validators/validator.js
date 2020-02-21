@@ -4,6 +4,14 @@ export const required = value => {
   return '* Field is required'
 }
 
+export const passwordsMustMatch = (value = 0, allValues) => 
+
+  (value !== allValues.password && value.length > 0) ? 
+    'Passwords do not match' :
+     undefined
+
+
+
 
 export const validateLength = (minLength = 0, maxLength) => (value = 0) => {
   if (value.length < minLength && value.length !== 0) {
