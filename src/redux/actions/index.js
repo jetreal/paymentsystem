@@ -39,7 +39,6 @@ export function onLoginError(errorData) {
 export const onSubmitLoginAsync = (loginData) => async (dispatch) => {
   try {
     const response = await getToken(loginData)
-    console.log(response)
     saveState(response.data.id_token)
     dispatch(onSubmitLogin(response))
     reset('login');

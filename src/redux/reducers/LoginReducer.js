@@ -1,26 +1,29 @@
-import { SUBMIT_LOGIN, ON_LOGIN_ERROR, LOGOUT, ON_REGISTER_ERROR, SUBMIT_REGISTER, CLEAR_FORM_WARNING, CHANGE_PAGE_WITH_DELAY } from "../types";
+import { SUBMIT_LOGIN, ON_LOGIN_ERROR, LOGOUT, ON_REGISTER_ERROR, SUBMIT_REGISTER, CLEAR_FORM_WARNING, CHANGE_REGISTERPAGE_WITH_DELAY, CHANGE_LOGINPAGE_WITH_DELAY } from "../types";
 
 let initialState = {
-  isChangePage: false,
-  isRegisterSucces: true,
+  isChangeRegisterPage: false,
+  isChangeLoginPage: false,
+  isRegisterSucces: false,
   warningText: '',
   jwt: '',
   loginData: {
-    Email: '',
-    Password: '',
-    isAuth: false
+    isAuth: true
   }
 }
 
 const LoginReducer = (state = initialState, action) => {
   switch (true) {
-    case (action.type === CHANGE_PAGE_WITH_DELAY): {
+    case (action.type === CHANGE_LOGINPAGE_WITH_DELAY): {
       let stateCopy = { ...state }
-      if (stateCopy.isRegisterSucces) {
-        stateCopy.isChangePage = true
-        stateCopy.isRegisterSucces = false
-      }
-    
+        stateCopy.isChangeLoginPage = true
+      return stateCopy
+    }
+    case (action.type === CHANGE_REGISTERPAGE_WITH_DELAY): {
+      let stateCopy = { ...state }
+        if(stateCopy.isRegisterSucces) {
+          stateCopy.isChangeRegisterPage = true
+          stateCopy.isRegisterSucces = false
+        }
       return stateCopy
     }
     case (action.type === CLEAR_FORM_WARNING): {
@@ -31,6 +34,7 @@ const LoginReducer = (state = initialState, action) => {
     case (action.type === LOGOUT): {
       let stateCopy = { ...state }
       stateCopy.loginData.isAuth = false;
+      stateCopy.isChangeLoginPage = false
       return stateCopy
     };
     case (action.type === SUBMIT_LOGIN): {

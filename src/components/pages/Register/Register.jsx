@@ -10,7 +10,7 @@ import LoginButton from '../../common/LoginButton/LoginButton'
 export default (props) => {
 
 
-  if (props.LoginState.isChangePage) {
+  if (props.LoginState.isChangeRegisterPage) {
     return <Redirect to="/login" />
 	}
 

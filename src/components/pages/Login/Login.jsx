@@ -12,7 +12,7 @@ export default (props) => {
 		props.onSubmitLoginAsync(data)
 	}
 
-	if (props.LoginState.loginData.isAuth) {
+	if (props.LoginState.isChangeLoginPage) {
 		return <Redirect to="/" />
 	}
 
