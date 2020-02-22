@@ -1,6 +1,8 @@
 import {
   FETCH_USER_DATA,
-  LOGOUT
+  LOGOUT,
+  ON_BUTTON_CREATE_TRANSACTION,
+  ON_BUTTON_HISTORY_TRANSACTION
 } from "../../types";
 import { loadState } from "../../localStorage";
 import { getLoggedUserInfo } from "../../../api/api";
@@ -8,6 +10,18 @@ import { getLoggedUserInfo } from "../../../api/api";
 // import { getToken } from "../../api/api";
 
 // import { loadState } from "../localStorage";
+
+export function onButtonCreateTransaction() {
+  return {
+    type: ON_BUTTON_CREATE_TRANSACTION
+  }
+}
+
+export function onButtonHistoryTransaction() {
+  return {
+    type: ON_BUTTON_HISTORY_TRANSACTION
+  }
+}
 
 function onFetchUserData(userObj) {
   return {

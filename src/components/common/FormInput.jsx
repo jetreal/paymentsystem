@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default ({input, meta, ...props}) => {
+
   return (
     <div>
       <input {...input} {...props}/>

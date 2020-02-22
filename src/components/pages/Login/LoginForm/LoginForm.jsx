@@ -4,8 +4,6 @@ import {Field, reduxForm} from 'redux-form'
 
 import { validateLength, isEmail } from '../../../../utils/validators/validator'
 import FormInput from '../../../common/FormInput'
-// import { connect } from 'react-redux'
-// import * as R from 'ramda'
 
 
 const maxLength = validateLength(4, 20)
@@ -44,7 +42,7 @@ let LoginForm = (props) => {
           value="Sign in"
           onClick={props.collectUserData}
           disabled={props.pristine || props.submitting}
-          style={(props.pristine || props.submitting || props.invalid ) ? {opacity: 0.4} : {opacity: 1}}
+          style={(props.pristine || props.submitting || props.invalid ) ? {opacity: 0.4, cursor: 'not-allowed'} : {opacity: 1}}
         />
       </form>
 	)
