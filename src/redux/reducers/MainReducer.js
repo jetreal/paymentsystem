@@ -3,14 +3,15 @@ import { FETCH_USER_DATA,
     ON_BUTTON_CREATE_TRANSACTION,
      ON_BUTTON_HISTORY_TRANSACTION,
      ON_GET_USERS,
-     ON_CLEAR_RECIPIENT_LIST } from "../types";
+     ON_CLEAR_RECIPIENT_LIST,
+     SET_RECIPIENT_NAME } from "../types";
 
 let initialState = {
-  filterUsers: [{
-    id: 0,
-    name: 'xxxxxxxxxxxxxxxxxxxxxxxx'
-  }
-  ],
+  recipient: {
+    name: '',
+    amount: 0
+  },
+  filterUsers: [],
   isHistoryButton: false,
   isTransactionButton: false,
   userData: {
@@ -23,6 +24,11 @@ let initialState = {
 
 const MainReducer = (state = initialState, action) => {
   switch (true) {
+    case (action.type === SET_RECIPIENT_NAME): {
+      let stateCopy = { ...state}
+        stateCopy.recipient.name = action.name
+      return stateCopy
+    }
     case (action.type === ON_CLEAR_RECIPIENT_LIST): {
       let stateCopy = { ...state}
         stateCopy.filterUsers = []

@@ -7,8 +7,7 @@ import CheckUserReduxForm from './checkUserForm/checkUserFrom'
 
 
 export default (props) => {
-  console.log(props)
-  const onSub = (data) => console.log(data)
+
   
   return (
     <div className={style.wrapper}>
@@ -28,7 +27,7 @@ export default (props) => {
         <UserReduxForm onChange={props.onFetchFilterRecipientAsync}/>
       </div>
 
-      <CheckUserReduxForm users={props.users} onSubmit={onSub} />
+      <CheckUserReduxForm users={props.users} onSubmit={props.setRecipientName} />
         
     </div>
   )

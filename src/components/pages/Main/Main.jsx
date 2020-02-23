@@ -11,11 +11,11 @@ import HistoryBlock from './historyBlock/HistoryBlock';
 export default (props) => {
   useEffect(() => {
     // Обновляем название докуммента, используя API браузера
-    if (props.MainState.userData.id === 0) {
+    // if (props.MainState.userData.id === 0) {
       props.onFetchCurrentUserDataAsync()
-    }
+    // }
 
-  });
+  }, []);
 
   return (
     <div className={style.main}>
@@ -37,6 +37,7 @@ export default (props) => {
           onFetchFilterRecipientAsync={props.onFetchFilterRecipientAsync}
           users={props.MainState.filterUsers}
           onClearRecipient={props.onClearRecipient}
+          setRecipientName={props.setRecipientName}
         />}
       {props.MainState.isHistoryButton && <HistoryBlock />}
 
