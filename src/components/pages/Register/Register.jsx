@@ -6,9 +6,7 @@ import { NavLink, Redirect } from 'react-router-dom'
 import LoginButton from '../../common/LoginButton/LoginButton'
 
 
-
 export default (props) => {
-
 
   if (props.LoginState.isChangeRegisterPage) {
     return <Redirect to="/login" />

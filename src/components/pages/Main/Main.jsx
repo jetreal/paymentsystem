@@ -12,11 +12,11 @@ export default (props) => {
   useEffect(() => {
     // Обновляем название докуммента, используя API браузера
     if (props.MainState.userData.id === 0) {
-      props.onFetchUserDataAsync()
+      props.onFetchCurrentUserDataAsync()
     }
 
   });
-  console.log(props)
+
   return (
     <div className={style.main}>
       {/* <NavLink to="/login"> */}
@@ -32,7 +32,12 @@ export default (props) => {
         showHistorySection={props.onButtonHistoryTransaction}
         isHistoryBlockActive={props.MainState.isHistoryButton}
       />
-      {props.MainState.isTransactionButton && <TransactionBlock />}
+      {props.MainState.isTransactionButton && 
+        <TransactionBlock 
+          onFetchFilterRecipientAsync={props.onFetchFilterRecipientAsync}
+          users={props.MainState.filterUsers}
+          onClearRecipient={props.onClearRecipient}
+        />}
       {props.MainState.isHistoryButton && <HistoryBlock />}
 
 
