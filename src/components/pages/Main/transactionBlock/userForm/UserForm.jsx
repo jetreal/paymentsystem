@@ -11,7 +11,7 @@ const maxLength = validateLength(4, 20)
 const maxNameLength = validateLength(null, 24)
 
 const lessThan = (otherField) =>
-  (value = 1, previousValue = 1, allValues) => {
+  (value, previousValue, allValues) => {
     // console.log(otherField)
     // console.log()
     // console.log(previousValue)
@@ -30,7 +30,7 @@ const userForm = (props) => {
 
           <Field
             component={FormInput}
-            name={'username'}
+            name={!props.number ? 'username' : 'amount'}
             type={props.type}
             placeholder={props.placeholder}
             className={style.regInput}
@@ -42,17 +42,21 @@ const userForm = (props) => {
   
           />
         </div>
-        {props.number === 'number' && 
+        {props.number === 'number' &&
           <div>
-            <input 
+            <input
+              
               type="submit" 
               className={style.btn} 
-              value="send"
+              value="set money"
               // onClick={props.collectUserData}
               disabled={props.pristine || props.submitting}
               style={(props.pristine || props.submitting || props.invalid ) ? {opacity: 0.4, cursor: 'not-allowed'} : {opacity: 1}}
             />
+            <p> maximum transfer amount: 10000 pw </p>
           </div>
+
+          
         }  
 
       </form>

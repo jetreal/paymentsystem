@@ -6,19 +6,46 @@ import {
   ON_GET_USERS,
   ON_CLEAR_RECIPIENT_LIST,
   SET_RECIPIENT_NAME,
-  SET_RECIPIENT_AMOUNT
+  SET_RECIPIENT_AMOUNT,
+  ON_TRANSACTION_SUCCESS,
+  GET_LIST_USER_TRANSACTION
 } from "../../types";
 import { loadState } from "../../localStorage";
-import { getLoggedUserInfo, getFilteredUserList } from "../../../api/api";
+import { getLoggedUserInfo, getFilteredUserList, cleateTransaction, getListUserTransaction } from "../../../api/api";
+
+import {reset} from 'redux-form';
+
+
 
 // import { getToken } from "../../api/api";
 
 // import { loadState } from "../localStorage";
 
+export function onTransactionSuccess(transData) {
+  return {
+    type: ON_TRANSACTION_SUCCESS,
+    transData: transData
+  }
+}
+
+export const onTransactionAsync = (transObj) => async (dispatch) => {
+
+  try {
+    const token = await loadState()
+    const allTransactionDataObj = await cleateTransaction(transObj, token)
+    console.log(allTransactionDataObj)
+    dispatch(onTransactionSuccess(allTransactionDataObj))
+  } catch (e) {
+    console.log(e)
+    // dispatch(onFetchUserDataError());
+  }
+}
+
+
 export function setRecipientAmount(recipientAmount) {
   return {
     type: SET_RECIPIENT_AMOUNT,
-    amount: +recipientAmount.username
+    amount: +recipientAmount.amount
   }
 }
 
@@ -29,10 +56,12 @@ export function setRecipientName(recipientName) {
   }
 }
 
-export function onClearRecipient() {
-  return {
-    type: ON_CLEAR_RECIPIENT_LIST
-  }
+export const onClearRecipient = () => async (dispatch) => {
+  await dispatch(reset('getUser'));
+  dispatch({type: ON_CLEAR_RECIPIENT_LIST})
+  // return {
+  //   type: ON_CLEAR_RECIPIENT_LIST
+  // }
 }
 
 function onGetUsers(recipients) {
@@ -55,9 +84,6 @@ export const onFetchFilterRecipientAsync = (filteredChar) => async (dispatch) =>
 
   }
 }
-
-
-
 
 export function onButtonCreateTransaction() {
   return {
@@ -90,5 +116,15 @@ export const onFetchCurrentUserDataAsync = () => async (dispatch) => {
     dispatch(onFetchUserData(userData))
   } catch (e) {
     dispatch(onFetchUserDataError());
+  }
+}
+
+export const onGetListUserTransactionAsync = () => async (dispatch) => {
+  try {
+    const token = await loadState()
+    const arrTransactions = await getListUserTransaction(token)
+    dispatch({type: GET_LIST_USER_TRANSACTION, arrTransactions})
+  } catch (e) {
+    console.log(e)
   }
 }

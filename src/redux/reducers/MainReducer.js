@@ -5,10 +5,22 @@ import { FETCH_USER_DATA,
      ON_GET_USERS,
      ON_CLEAR_RECIPIENT_LIST,
      SET_RECIPIENT_NAME,
-     SET_RECIPIENT_AMOUNT
+     SET_RECIPIENT_AMOUNT,
+     ON_TRANSACTION_SUCCESS,
+     CLEAR_FORM_WARNING,
+     CLOSE_MENU,
+     GET_LIST_USER_TRANSACTION
       } from "../types";
 
 let initialState = {
+  objOfSuccessTransaction: {},
+  arrayOfTransactions: [],
+  isTransationSuccess: false,
+  isTransationFailed: false,
+  successRecipient: {
+    name: '',
+    amount: 0
+  },
   recipient: {
     name: '',
     amount: 0
@@ -26,21 +38,54 @@ let initialState = {
 
 const MainReducer = (state = initialState, action) => {
   switch (true) {
+    case (action.type === GET_LIST_USER_TRANSACTION): {
+      let stateCopy = { ...state}
+      console.log(action.arrTransactions.data.trans_token)
+        stateCopy.arrayOfTransactions = action.arrTransactions.data.trans_token
+        console.log(stateCopy.arrayOfTransactions)
+      return stateCopy
+    }
+    case (action.type === CLOSE_MENU): {
+      let stateCopy = { ...state}
+        stateCopy.isTransactionButton = false
+        stateCopy.isHistoryButton = false
+        stateCopy.isTransactionButton = false
+        stateCopy.recipient.amount = 0
+        stateCopy.recipient.name = ''
+      return stateCopy
+    }
+
+    case (action.type === CLEAR_FORM_WARNING): {
+      let stateCopy = { ...state}
+        stateCopy.isTransationFailed = false
+        stateCopy.isTransationSuccess = false
+      return stateCopy
+    }
+    case (action.type === ON_TRANSACTION_SUCCESS): {
+      let stateCopy = { ...state}
+        stateCopy.isTransationSuccess = true
+        stateCopy.recipient.name = ''
+        stateCopy.recipient.amount = 0
+        stateCopy.isTransactionButton = false
+        stateCopy.objOfSuccessTransaction = {...action.transData.data.trans_token}
+      return stateCopy
+    }
     case (action.type === SET_RECIPIENT_AMOUNT): {
       let stateCopy = { ...state}
-        stateCopy.recipient.amount = action.amount
-        console.log(stateCopy.recipient)
+        stateCopy.recipient.amount = stateCopy.successRecipient.amount = action.amount
       return stateCopy
     }
     case (action.type === SET_RECIPIENT_NAME): {
       let stateCopy = { ...state}
-        stateCopy.recipient.name = action.name
+        stateCopy.recipient.name = stateCopy.successRecipient.name = action.name
       return stateCopy
     }
     case (action.type === ON_CLEAR_RECIPIENT_LIST): {
       let stateCopy = { ...state}
-        stateCopy.filterRecipients = []
-        stateCopy.recipient.name = ''
+      stateCopy.filterRecipients = []
+      stateCopy.recipient.name = ''
+      stateCopy.recipient.amount = 0
+      console.log(stateCopy.recipient.amount)
       return stateCopy
     }
     case (action.type === ON_GET_USERS): {
@@ -60,6 +105,10 @@ const MainReducer = (state = initialState, action) => {
       let stateCopy = { ...state}
       if (!stateCopy.isHistoryButton) {
         stateCopy.isTransactionButton = !stateCopy.isTransactionButton
+      }
+      if (!stateCopy.isTransactionButton) {
+        stateCopy.filterRecipients = []
+        stateCopy.recipient.name = ''
       }
       return stateCopy
     }

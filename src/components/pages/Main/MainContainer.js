@@ -9,7 +9,9 @@ import { onFetchCurrentUserDataAsync,
      onFetchFilterRecipientAsync,
       onClearRecipient,
       setRecipientName,
-      setRecipientAmount
+      setRecipientAmount,
+      onTransactionAsync,
+      onGetListUserTransactionAsync
 } from '../../../redux/actions/mainActions';
 // import { onSubmitLoginAsync } from '../../../redux/actions';
 
@@ -33,7 +35,9 @@ const MainContainer = connect(
     onFetchFilterRecipientAsync,
     onClearRecipient,
     setRecipientName,
-    setRecipientAmount
+    setRecipientAmount,
+    onTransactionAsync,
+    onGetListUserTransactionAsync
   }
 )(AuthRedirectComponent)
 

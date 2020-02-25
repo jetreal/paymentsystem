@@ -8,7 +8,6 @@ import LoginButton from '../../common/LoginButton/LoginButton'
 
 
 export default (props) => {
-	console.log(props)
 	const onSubmit = (data) => {
 		props.onSubmitLoginAsync(data)
 	}
