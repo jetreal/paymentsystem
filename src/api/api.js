@@ -93,7 +93,6 @@ export const getLoggedUserInfo = (token) => {
 export const getFilteredUserList = (filteredChar, token) => {
   const data = {};
   data.filter = filteredChar.username
-  console.log(data)
   const option = {
     url: '/api/protected/users/list',
     method: 'POST',

@@ -13,26 +13,26 @@ let checkUserForm = (props) => {
     
       <form onSubmit={props.handleSubmit}>
         <ul>
-          {props.users.map(user => {
+          {props.recipients.map(recipient => {
             return (
-              <label htmlFor={user.id} key={user.id}>
-                <li key={user.id}>
+              <label htmlFor={recipient.id} key={recipient.id}>
+                <li key={recipient.id}>
                   <Field
                     component={RadioField}
                     className={style.inputRadio}
                     type="radio"
                     name="username"
-                    id={user.id}
-                    value={user.name}
+                    id={recipient.id}
+                    value={recipient.name}
                     
                   />
-                  <span key={user.id}>{user.name}</span>
+                  <span key={recipient.id}>{recipient.name}</span>
                   <input
                     className={style.inputChoose}
                     type="submit"
                     value="ch"
-                    disabled={props.hasCheckedValue !== user.name}
-                    style={props.hasCheckedValue !== user.name ?
+                    disabled={props.hasCheckedValue !== recipient.name}
+                    style={props.hasCheckedValue !== recipient.name ?
                           {opacity: 0, pointerEvents: 'none'} :
                           {opacity: 1, pointerEvents: 'auto'}
                         }
@@ -62,6 +62,6 @@ checkUserForm = connect(state => {
   return {
     hasCheckedValue
   }
-})(checkUserForm )
+})(checkUserForm)
 
 export default checkUserForm

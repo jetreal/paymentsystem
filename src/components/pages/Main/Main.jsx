@@ -9,6 +9,7 @@ import HistoryBlock from './historyBlock/HistoryBlock';
 
 
 export default (props) => {
+
   useEffect(() => {
     // Обновляем название докуммента, используя API браузера
     // if (props.MainState.userData.id === 0) {
@@ -35,9 +36,11 @@ export default (props) => {
       {props.MainState.isTransactionButton && 
         <TransactionBlock 
           onFetchFilterRecipientAsync={props.onFetchFilterRecipientAsync}
-          users={props.MainState.filterUsers}
+          recipients={props.MainState.filterRecipients}
+          recipient={props.MainState.recipient}
           onClearRecipient={props.onClearRecipient}
           setRecipientName={props.setRecipientName}
+          setRecipientAmount={props.setRecipientAmount}
         />}
       {props.MainState.isHistoryButton && <HistoryBlock />}
 

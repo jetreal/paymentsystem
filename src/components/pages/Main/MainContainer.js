@@ -8,7 +8,8 @@ import { onFetchCurrentUserDataAsync,
     onButtonHistoryTransaction,
      onFetchFilterRecipientAsync,
       onClearRecipient,
-      setRecipientName
+      setRecipientName,
+      setRecipientAmount
 } from '../../../redux/actions/mainActions';
 // import { onSubmitLoginAsync } from '../../../redux/actions';
 
@@ -21,6 +22,7 @@ let mapStateToProps = (state) => {
 
 
 let AuthRedirectComponent = withAuthRedirect(Main)
+
 const MainContainer = connect(
   mapStateToProps,
   {
@@ -30,7 +32,8 @@ const MainContainer = connect(
     onButtonHistoryTransaction,
     onFetchFilterRecipientAsync,
     onClearRecipient,
-    setRecipientName
+    setRecipientName,
+    setRecipientAmount
   }
 )(AuthRedirectComponent)
 

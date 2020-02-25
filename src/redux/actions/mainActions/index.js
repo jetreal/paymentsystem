@@ -5,7 +5,8 @@ import {
   ON_BUTTON_HISTORY_TRANSACTION,
   ON_GET_USERS,
   ON_CLEAR_RECIPIENT_LIST,
-  SET_RECIPIENT_NAME
+  SET_RECIPIENT_NAME,
+  SET_RECIPIENT_AMOUNT
 } from "../../types";
 import { loadState } from "../../localStorage";
 import { getLoggedUserInfo, getFilteredUserList } from "../../../api/api";
@@ -13,6 +14,13 @@ import { getLoggedUserInfo, getFilteredUserList } from "../../../api/api";
 // import { getToken } from "../../api/api";
 
 // import { loadState } from "../localStorage";
+
+export function setRecipientAmount(recipientAmount) {
+  return {
+    type: SET_RECIPIENT_AMOUNT,
+    amount: +recipientAmount.username
+  }
+}
 
 export function setRecipientName(recipientName) {
   return {
@@ -35,7 +43,6 @@ function onGetUsers(recipients) {
 }
 
 export const onFetchFilterRecipientAsync = (filteredChar) => async (dispatch) => {
-  console.log(filteredChar.username)
   if (filteredChar.username != null) {
     try {
       const token = await loadState()

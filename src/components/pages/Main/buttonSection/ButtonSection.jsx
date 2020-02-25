@@ -15,7 +15,7 @@ export default (props) => {
       </div>
       <div className={style.btnRight}>
         <StyledButton
-          onClick={props.showCreateSection}
+          onClick={props.showCreateSection }
           isActive={props.isHistoryBlockActive}
         >{!props.isTransactionBlockActive ? 'Create new transaction' : 'close'}
         </StyledButton>

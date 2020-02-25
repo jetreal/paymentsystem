@@ -4,14 +4,19 @@ export const required = value => {
   return '* Field is required'
 }
 
+export const availability = (value = 0, name, some) => {
+
+  console.log(some.MainState.userData.balance)
+  if ( +value <= +some.MainState.userData.balance) return undefined;
+
+  return '* your balance is lower'
+}
+
 export const passwordsMustMatch = (value = 0, allValues) => 
 
   (value !== allValues.password && value.length > 0) ? 
     'Passwords do not match' :
      undefined
-
-
-
 
 export const validateLength = (minLength = 0, maxLength) => (value = 0) => {
   if (value.length < minLength && value.length !== 0) {
@@ -34,3 +39,4 @@ export const isEmail = (values = 0) => {
   }
 }
 
+export const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
