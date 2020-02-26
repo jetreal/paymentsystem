@@ -4,12 +4,6 @@ import UserReduxForm from "./userForm/UserForm";
 import CheckUserReduxForm from "./checkUserForm/checkUserFrom";
 
 export default props => {
-  useEffect(() => {
-    // Обновляем название докуммента, используя API браузера
-    // if (props.MainState.userData.id === 0) {
-    props.onFetchCurrentUserDataAsync();
-    // }
-  }, []);
 
   const transObj = {
     name: props.recipient.name,
@@ -43,7 +37,7 @@ export default props => {
             <br />
             <span className={style.recipientName}>{props.recipient.name}</span>
           </p>
-          
+
           {props.recipient.amount === 0 ? (
             <UserReduxForm
               placeholder="Enter the Amount money"

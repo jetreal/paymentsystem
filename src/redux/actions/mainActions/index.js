@@ -8,7 +8,8 @@ import {
   SET_RECIPIENT_NAME,
   SET_RECIPIENT_AMOUNT,
   ON_TRANSACTION_SUCCESS,
-  GET_LIST_USER_TRANSACTION
+  GET_LIST_USER_TRANSACTION,
+  REPEAT_TRANSACTION
 } from "../../types";
 import { loadState } from "../../localStorage";
 import { getLoggedUserInfo, getFilteredUserList, cleateTransaction, getListUserTransaction } from "../../../api/api";
@@ -20,6 +21,13 @@ import {reset} from 'redux-form';
 // import { getToken } from "../../api/api";
 
 // import { loadState } from "../localStorage";
+
+export function repeatTransaction(transData) {
+  return {
+    type: REPEAT_TRANSACTION,
+    transData: transData
+  }
+}
 
 export function onTransactionSuccess(transData) {
   return {
@@ -34,7 +42,10 @@ export const onTransactionAsync = (transObj) => async (dispatch) => {
     const token = await loadState()
     const allTransactionDataObj = await cleateTransaction(transObj, token)
     console.log(allTransactionDataObj)
-    dispatch(onTransactionSuccess(allTransactionDataObj))
+    await dispatch(onTransactionSuccess(allTransactionDataObj))
+    await dispatch(onGetListUserTransactionAsync())
+    await dispatch(onFetchCurrentUserDataAsync())
+  
   } catch (e) {
     console.log(e)
     // dispatch(onFetchUserDataError());

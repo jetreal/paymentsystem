@@ -9,7 +9,8 @@ import { FETCH_USER_DATA,
      ON_TRANSACTION_SUCCESS,
      CLEAR_FORM_WARNING,
      CLOSE_MENU,
-     GET_LIST_USER_TRANSACTION
+     GET_LIST_USER_TRANSACTION,
+     REPEAT_TRANSACTION
       } from "../types";
 
 let initialState = {
@@ -38,11 +39,17 @@ let initialState = {
 
 const MainReducer = (state = initialState, action) => {
   switch (true) {
+    case (action.type === REPEAT_TRANSACTION): {
+      let stateCopy = { ...state}
+      stateCopy.recipient.name = stateCopy.successRecipient.name = action.transData.original.username
+      stateCopy.recipient.amount = stateCopy.successRecipient.amount = Math.abs(action.transData.original.amount)
+      stateCopy.isTransactionButton = true
+      stateCopy.isHistoryButton = false
+      return stateCopy
+    }
     case (action.type === GET_LIST_USER_TRANSACTION): {
       let stateCopy = { ...state}
-      console.log(action.arrTransactions.data.trans_token)
         stateCopy.arrayOfTransactions = action.arrTransactions.data.trans_token
-        console.log(stateCopy.arrayOfTransactions)
       return stateCopy
     }
     case (action.type === CLOSE_MENU): {
@@ -85,7 +92,6 @@ const MainReducer = (state = initialState, action) => {
       stateCopy.filterRecipients = []
       stateCopy.recipient.name = ''
       stateCopy.recipient.amount = 0
-      console.log(stateCopy.recipient.amount)
       return stateCopy
     }
     case (action.type === ON_GET_USERS): {

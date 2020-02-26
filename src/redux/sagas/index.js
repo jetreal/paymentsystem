@@ -5,9 +5,10 @@ const delay = (ms) => new Promise(res => setTimeout(res, ms))
 // Наша Сага-наблюдатель: создаёт новые incrementAsync задачи на каждом INCREMENT_ASYNC
 export function* watchIncrementAsync() {
   yield takeEvery('SUBMIT_REGISTER', delayChangeRegisterPage)
-  yield takeEvery('SUBMIT_LOGIN', delayChangeLoginPage)
+  yield takeEvery('SUBMIT_LOGIN', delayChangeLoginPage )
   yield takeEvery('ON_TRANSACTION_SUCCESS', clearTransWarnings)
   yield takeEvery('LOGOUT', onLogout)
+ 
 
 
   // yield takeEvery('RIGHT_BUTTON_CLICK', showReactText)

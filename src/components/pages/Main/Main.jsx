@@ -8,12 +8,11 @@ import TransactionBlock from "./transactionBlock/TransactionBlock";
 import HistoryBlock from "./historyBlock/HistoryBlock";
 
 export default props => {
+
+
   useEffect(() => {
-   
     props.onFetchCurrentUserDataAsync();
     props.onGetListUserTransactionAsync()
-      
-
   }, []);
 
   return (
@@ -69,6 +68,7 @@ export default props => {
       {props.MainState.isHistoryButton &&
        <HistoryBlock 
           arrayOfTransactions={props.MainState.arrayOfTransactions}
+          repeatTransaction={props.repeatTransaction}
        />}
 
       {/* <p>id: {props.MainState.userData.id}</p>
