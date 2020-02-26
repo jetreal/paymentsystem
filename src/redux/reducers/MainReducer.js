@@ -40,11 +40,13 @@ let initialState = {
 const MainReducer = (state = initialState, action) => {
   switch (true) {
     case (action.type === REPEAT_TRANSACTION): {
+
       let stateCopy = { ...state}
-      stateCopy.recipient.name = stateCopy.successRecipient.name = action.transData.original.username
-      stateCopy.recipient.amount = stateCopy.successRecipient.amount = Math.abs(action.transData.original.amount)
-      stateCopy.isTransactionButton = true
-      stateCopy.isHistoryButton = false
+        stateCopy.recipient.name = stateCopy.successRecipient.name = action.transData.original.username
+        stateCopy.recipient.amount = stateCopy.successRecipient.amount = Math.abs(action.transData.original.amount)
+        stateCopy.isTransactionButton = true
+        stateCopy.isHistoryButton = false
+      
       return stateCopy
     }
     case (action.type === GET_LIST_USER_TRANSACTION): {
@@ -74,6 +76,7 @@ const MainReducer = (state = initialState, action) => {
         stateCopy.recipient.name = ''
         stateCopy.recipient.amount = 0
         stateCopy.isTransactionButton = false
+        stateCopy.filterRecipients = []
         stateCopy.objOfSuccessTransaction = {...action.transData.data.trans_token}
       return stateCopy
     }

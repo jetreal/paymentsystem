@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import style from "./transactionBlock.module.sass";
 import UserReduxForm from "./userForm/UserForm";
 import CheckUserReduxForm from "./checkUserForm/checkUserFrom";
@@ -9,11 +9,20 @@ export default props => {
     name: props.recipient.name,
     amount: props.recipient.amount
   };
+
+  const isRecipients = props.recipients.length
   return (
     <div className={style.wrapper}>
       <h2 className={style.header}>Create new transaction</h2>
       {/* {props.recipients.length > 0 && */}
-      <button className={style.clearBtn} onClick={props.onClearRecipient}>
+      <button 
+        className={style.clearBtn} 
+        onClick={props.onClearRecipient}
+        style={{opacity: isRecipients === 0 ? '0.3' : '1',
+                cursor: isRecipients === 0 ? 'default' : 'pointer'}}
+        disabled={isRecipients === 0}
+
+      >
         Clear
       </button>
       {/* } */}

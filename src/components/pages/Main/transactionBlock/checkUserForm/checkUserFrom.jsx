@@ -30,7 +30,7 @@ let checkUserForm = (props) => {
                   <input
                     className={style.inputChoose}
                     type="submit"
-                    value="ch"
+                    value=""
                     disabled={props.hasCheckedValue !== recipient.name}
                     style={props.hasCheckedValue !== recipient.name ?
                           {opacity: 0, pointerEvents: 'none'} :

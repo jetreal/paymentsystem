@@ -67,24 +67,19 @@ export default props => {
             Header: "Balance",
             accessor: "balance"
           }
-          
         ]
       }
     ],
     []
   );
 
-  const defaultPropGetter = () => ({})
-  function Table({ 
-    columns,
-    data, 
-    getRowProps = defaultPropGetter 
-  }) {
+  const defaultPropGetter = () => ({});
+  function Table({ columns, data, getRowProps = defaultPropGetter }) {
     // Use the state and functions returned from useTable to build your UI
     const {
       getTableProps,
       getTableBodyProps,
-      
+
       headerGroups,
       rows,
       prepareRow,
@@ -143,9 +138,7 @@ export default props => {
                 <tr {...row.getRowProps(getRowProps(row))}>
                   {row.cells.map(cell => {
                     return (
-                      <td {...cell.getCellProps()}>
-                        {cell.render("Cell")}
-                      </td>
+                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                     );
                   })}
                 </tr>
@@ -173,7 +166,13 @@ export default props => {
           <span>
             Page{" "}
             <strong>
-              {pageIndex + 1} of {pageOptions.length}
+              <span className={style.pageNumber}>
+                {pageIndex + 1}
+              </span>
+              of 
+              <span className={style.pageNumber}>
+                {pageOptions.length}
+              </span>
             </strong>{" "}
           </span>
           <span>
@@ -206,20 +205,29 @@ export default props => {
   }
 
   return (
-    <div style={{ border: "1px solid red" }}>
+    <div className={style.wrapperHistory}>
       <h2 className={style.header}>Transaction History</h2>
+      <p className={style.hint}>
+        You can repeat one of your transactions using double click on its line
+      </p>
       <div className={style.tableWrapper}>
         <Styles>
-          <Table 
-            columns={columns} 
+          <Table
+            columns={columns}
             data={props.arrayOfTransactions}
-            getRowProps={row => ({
-              onDoubleClick: props.repeatTransaction.bind(null, row)
-            })}
-          
-          >
-
-          </Table>
+            getRowProps={row => {
+              
+              if (Math.sign(row.original.amount) === 1) {
+                return;
+              }
+              return {
+                onDoubleClick: props.repeatTransaction.bind(null, row),
+                style: {
+                  background: Math.sign(row.original.amount) !== 1 ? 'rgba(0,0,0,.3)' : 'rgba(200,200,0,.8)',
+                },
+              };
+            }}
+          ></Table>
         </Styles>
       </div>
       {/* <div>{props.arrayOfTransactions[0].username}</div>

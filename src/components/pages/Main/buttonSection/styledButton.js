@@ -5,7 +5,7 @@ export const StyledButton = styled.button`
     cursor: ${props => props.isActive !== true ? 'pointer' : 'not-allowed'};
     width: 220px;
     height: 40px;
-    background: none;
+    background: rgba(0,0,0, .2);
     color: white;
     font-size: 1.2rem;
     border: 2px green solid;

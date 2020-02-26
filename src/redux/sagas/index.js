@@ -23,7 +23,7 @@ export function* onLogout() {
 }
 
 export function* clearTransWarnings() {
-  yield delay(4150)
+  yield delay(9150)
   yield put({type: 'CLEAR_FORM_WARNING'})
   // yield put({type: 'CHANGE_TV'})
 }

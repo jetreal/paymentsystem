@@ -52,7 +52,7 @@ export const onTransactionAsync = (transObj) => async (dispatch) => {
   }
 }
 
-
+// checkUser
 export function setRecipientAmount(recipientAmount) {
   return {
     type: SET_RECIPIENT_AMOUNT,
@@ -69,6 +69,7 @@ export function setRecipientName(recipientName) {
 
 export const onClearRecipient = () => async (dispatch) => {
   await dispatch(reset('getUser'));
+  await dispatch(reset('checkUser'));
   dispatch({type: ON_CLEAR_RECIPIENT_LIST})
   // return {
   //   type: ON_CLEAR_RECIPIENT_LIST

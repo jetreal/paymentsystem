@@ -45,7 +45,10 @@ export default props => {
       {(!props.MainState.isTransactionButton &&
         !props.MainState.isHistoryButton) &&
         props.MainState.isTransationSuccess && (
+          
           <div className={style.congratulationWrap}>
+            <br />
+            <br />
             Transaction success !!!
             <br />
             <h3>

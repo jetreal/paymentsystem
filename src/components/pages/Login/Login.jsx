@@ -25,7 +25,6 @@ export default (props) => {
 				<FormContainer onSubmit={onSubmit} onChange={props.onClearFromWarning}/>
 				{props.LoginState.warningText && 
 				<FormWarning warningText={props.LoginState.warningText}/>}
-				<NavLink to='/'>Main</NavLink>
 			</div>
 		</div>
 			

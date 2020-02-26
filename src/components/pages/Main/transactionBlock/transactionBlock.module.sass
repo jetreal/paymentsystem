@@ -36,11 +36,19 @@ span
 .inputChoose
   float: right
   opacity: 0.2
+  background-color: green
+  border-radius: 100%
+  width: 20px
+  height: 20px
+  cursor: pointer
 
 .clearBtn
   position: absolute
   right: 10px
-  // float: right
+  background: rgba(0,0,0, .4)
+  color: white
+  border-radius: 4px
+  cursor: pointer
 
 .recipientDiv
   text-align: center
@@ -52,10 +60,22 @@ span
   display: flex
   justify-content: space-between
   & button:first-child
-    background-color: red
+    width: 100px
+    height: 30px
+    background-color: rgba(255, 0, 0, 0.5)
     border-radius: 6px
     color: white
+    font-size: 1.2rem
+    transition: 1s ease
+    &:hover
+      width: 200px
   & button:last-child
-    background-color: green
+    width: 100px
+    height: 30px
+    background-color: rgba(0, 255, 0, 0.5)
     border-radius: 6px
     color: white
+    font-size: 1.2rem
+    transition: 1s ease
+    &:hover
+      width: 200px
