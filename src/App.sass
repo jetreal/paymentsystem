@@ -21,3 +21,45 @@ body, html
   min-width: inherit
   // border: 1px solid pink
   margin: 0 auto
+
+
+  // css transition group
+
+.fade-appear
+  z-index: 1
+  opacity: 0
+  transform: translate(0, 100px)
+
+.fade-appear.fade-appear-active
+  opacity: 1
+  // transition: all 2s ease
+  transform: translate(0, 0px)
+  transition: all 1s cubic-bezier(0,1.11,.06,.99)
+
+.fadeRegister-appear
+  z-index: 1
+  opacity: 0
+.fadeRegister-appear.fadeRegister-appear-active
+  opacity: 1
+  transition: all 1s linear
+
+// .fade-enter
+//   z-index: 1
+//   opacity: 0
+
+// .fade-enter.fade-enter-active 
+//   opacity: 1
+//   transition: opacity 2s ease
+
+// .fade-exit
+//   opacity: 1
+//   transform: translate(0, 0)
+
+// .fade-exit.fade-exit-active
+//   opacity: 1
+//   transition: all 1s ease
+//   transform: translate(0, 1000px)
+
+// .fade-exit-done
+//   opacity: 0
+//   transform: translate(0, 100px)

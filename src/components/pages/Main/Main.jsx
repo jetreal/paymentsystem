@@ -1,18 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./main.module.sass";
-import { NavLink } from "react-router-dom";
 import LoginButton from "../../common/LoginButton/LoginButton";
 import MainHeader from "./mainHeader/MainHeader";
 import ButtonSection from "./buttonSection/ButtonSection";
 import TransactionBlock from "./transactionBlock/TransactionBlock";
 import HistoryBlock from "./historyBlock/HistoryBlock";
 
-export default props => {
+import { CSSTransition } from "react-transition-group";
 
+export default props => {
+  let [appearHome, setAppearHome] = useState(
+    !props.MainState.isTransactionButton
+  );
+  // const [age, setAge] = useState(42);
 
   useEffect(() => {
     props.onFetchCurrentUserDataAsync();
-    props.onGetListUserTransactionAsync()
+    props.onGetListUserTransactionAsync();
   }, []);
 
   return (
@@ -24,6 +28,7 @@ export default props => {
         name={props.MainState.userData.name}
         balance={props.MainState.userData.balance}
       />
+
       <ButtonSection
         showCreateSection={props.onButtonCreateTransaction}
         isTransactionBlockActive={props.MainState.isTransactionButton}
@@ -31,21 +36,31 @@ export default props => {
         isHistoryBlockActive={props.MainState.isHistoryButton}
       />
       {props.MainState.isTransactionButton && (
-        <TransactionBlock
-          onFetchFilterRecipientAsync={props.onFetchFilterRecipientAsync}
-          recipients={props.MainState.filterRecipients}
-          recipient={props.MainState.recipient}
-          onClearRecipient={props.onClearRecipient}
-          setRecipientName={props.setRecipientName}
-          setRecipientAmount={props.setRecipientAmount}
-          onTransactionAsync={props.onTransactionAsync}
-          onFetchCurrentUserDataAsync={props.onFetchCurrentUserDataAsync}
-        />
+        <CSSTransition
+          in={appearHome}
+          appear={true}
+          timeout={{
+            appear: 2000,
+            enter: 1000,
+            exit: 1000
+          }}
+          classNames="fade"
+        >
+          <TransactionBlock
+            onFetchFilterRecipientAsync={props.onFetchFilterRecipientAsync}
+            recipients={props.MainState.filterRecipients}
+            recipient={props.MainState.recipient}
+            onClearRecipient={props.onClearRecipient}
+            setRecipientName={props.setRecipientName}
+            setRecipientAmount={props.setRecipientAmount}
+            onTransactionAsync={props.onTransactionAsync}
+            onFetchCurrentUserDataAsync={props.onFetchCurrentUserDataAsync}
+          />
+        </CSSTransition>
       )}
-      {(!props.MainState.isTransactionButton &&
-        !props.MainState.isHistoryButton) &&
+      {!props.MainState.isTransactionButton &&
+        !props.MainState.isHistoryButton &&
         props.MainState.isTransationSuccess && (
-          
           <div className={style.congratulationWrap}>
             <br />
             <br />
@@ -63,16 +78,39 @@ export default props => {
           </div>
         )}
 
-{(!props.MainState.isTransactionButton &&
-        !props.MainState.isHistoryButton) &&
-        props.MainState.isTransationFailed && 
-        <div>failed</div> }
+      {!props.MainState.isTransactionButton &&
+        !props.MainState.isHistoryButton &&
+        props.MainState.isTransationFailed && (
+          <div className={style.congratulationWrap} style={{color: '#0078D7'}}>
+            <br />
+            <br />
+            Transaction failed !!!
+            <br />
+            <h3>
+              You are not logged in. Session timed out.
+              <br />
+              Pleace login again!
+            </h3>
+          </div>
+        )}
 
-      {props.MainState.isHistoryButton &&
-       <HistoryBlock 
-          arrayOfTransactions={props.MainState.arrayOfTransactions}
-          repeatTransaction={props.repeatTransaction}
-       />}
+      {props.MainState.isHistoryButton && (
+        <CSSTransition
+          in={appearHome}
+          appear={true}
+          timeout={{
+            appear: 2000,
+            enter: 1000,
+            exit: 1000
+          }}
+          classNames="fade"
+        >
+          <HistoryBlock
+            arrayOfTransactions={props.MainState.arrayOfTransactions}
+            repeatTransaction={props.repeatTransaction}
+          />
+        </CSSTransition>
+      )}
 
       {/* <p>id: {props.MainState.userData.id}</p>
       <p>name: {props.MainState.userData.name}</p>

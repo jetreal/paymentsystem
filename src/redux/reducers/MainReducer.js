@@ -10,7 +10,8 @@ import { FETCH_USER_DATA,
      CLEAR_FORM_WARNING,
      CLOSE_MENU,
      GET_LIST_USER_TRANSACTION,
-     REPEAT_TRANSACTION
+     REPEAT_TRANSACTION,
+     ON_TRANSACTION_FAil
       } from "../types";
 
 let initialState = {
@@ -68,6 +69,16 @@ const MainReducer = (state = initialState, action) => {
       let stateCopy = { ...state}
         stateCopy.isTransationFailed = false
         stateCopy.isTransationSuccess = false
+      return stateCopy
+    }
+    case (action.type === ON_TRANSACTION_FAil): {
+      let stateCopy = { ...state}
+      stateCopy.isTransationFailed = true
+      stateCopy.recipient.name = ''
+      stateCopy.recipient.amount = 0
+      stateCopy.isTransactionButton = false
+      stateCopy.filterRecipients = []
+
       return stateCopy
     }
     case (action.type === ON_TRANSACTION_SUCCESS): {

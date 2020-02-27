@@ -72,7 +72,7 @@ export const onSubmitRegisterAsync = (registerData) => async (dispatch) => {
   } catch (e) {
     console.log(e)
     // dispatch(onSubmitError(response))
-    // dispatch(onLoginError(e.message.slice(-3)))
+    // dispatch(onSubmitError(response))
     // reset('login');
   }
 }

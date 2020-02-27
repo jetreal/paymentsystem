@@ -4,6 +4,7 @@ import FormContainer from './LoginForm/LoginForm'
 import FormWarning from '../Register/FormWarning/FormWarning'
 import { NavLink, Redirect } from 'react-router-dom'
 import LoginButton from '../../common/LoginButton/LoginButton'
+import { CSSTransition } from 'react-transition-group'
 
 
 
@@ -21,11 +22,22 @@ export default (props) => {
 			<NavLink to="/register">
         <LoginButton name="register"/>
       </NavLink>
-			<div className={style.loginBox}>
-				<FormContainer onSubmit={onSubmit} onChange={props.onClearFromWarning}/>
-				{props.LoginState.warningText && 
-				<FormWarning warningText={props.LoginState.warningText}/>}
-			</div>
+			<CSSTransition
+        in={true}
+        appear={true}
+        timeout={{
+          appear: 1000,
+          enter: 1000,
+          exit: 1000
+        }}
+        classNames="fadeRegister"
+      >
+				<div className={style.loginBox}>
+					<FormContainer onSubmit={onSubmit} onChange={props.onClearFromWarning}/>
+						{props.LoginState.warningText && 
+					<FormWarning warningText={props.LoginState.warningText}/>}
+				</div>
+			</CSSTransition>
 		</div>
 			
 	)

@@ -6,7 +6,6 @@ export const required = value => {
 
 export const availability = (value = 0, name, some) => {
 
-  console.log(some.MainState.userData.balance)
   if ( +value <= +some.MainState.userData.balance) return undefined;
 
   return '* your balance is lower'

@@ -25,6 +25,7 @@ export const registration = (regData) => {
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
+        return error.response.data
       } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
@@ -173,7 +174,7 @@ export const cleateTransaction = (transaction, token) => {
         console.log(error.response.data);
         console.log(error.response.status);
         console.log(error.response.headers);
-        return error.response.status
+        return error.response.data
       } else if (error.request) {
         // The request was made but no response was received
         // `error.request` is an instance of XMLHttpRequest in the browser and an instance of

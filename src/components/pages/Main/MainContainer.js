@@ -18,7 +18,6 @@ import { onFetchCurrentUserDataAsync,
 
 
 let mapStateToProps = (state) => {
-  console.log(state)
   return {
     MainState: state.MainReducer
   }

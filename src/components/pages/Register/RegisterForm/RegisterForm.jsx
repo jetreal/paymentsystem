@@ -82,8 +82,8 @@ const RegisterReduxForm = reduxForm({
   // a unique name for the form
   form: 'register',
   initialValues: {
-    email: 'jet@gmail.com',
-    password: 'jet3333'
+    // email: 'jet@gmail.com',
+    // password: 'jet3333'
   }
 })(RegisterForm)
 

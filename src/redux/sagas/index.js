@@ -7,6 +7,7 @@ export function* watchIncrementAsync() {
   yield takeEvery('SUBMIT_REGISTER', delayChangeRegisterPage)
   yield takeEvery('SUBMIT_LOGIN', delayChangeLoginPage )
   yield takeEvery('ON_TRANSACTION_SUCCESS', clearTransWarnings)
+  yield takeEvery('ON_TRANSACTION_FAil', onTransactionFail)
   yield takeEvery('LOGOUT', onLogout)
  
 
@@ -16,6 +17,10 @@ export function* watchIncrementAsync() {
 
 }
 
+export function* onTransactionFail() {
+  yield delay(5000)
+  yield put({type: 'LOGOUT'})
+}
 
 export function* onLogout() {
   yield put({type: 'ON_CLEAR_RECIPIENT_LIST'})
@@ -25,12 +30,12 @@ export function* onLogout() {
 export function* clearTransWarnings() {
   yield delay(9150)
   yield put({type: 'CLEAR_FORM_WARNING'})
-  // yield put({type: 'CHANGE_TV'})
 }
 
 export function* delayChangeRegisterPage() {
     yield delay(1150)
     yield put({type: 'CHANGE_REGISTERPAGE_WITH_DELAY'})
+    yield put({type: 'LOGOUT'})
     // yield put({type: 'CHANGE_TV'})
   }
   export function* delayChangeLoginPage() {

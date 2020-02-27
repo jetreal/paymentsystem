@@ -34,7 +34,8 @@ const LoginReducer = (state = initialState, action) => {
     case (action.type === LOGOUT): {
       let stateCopy = { ...state }
       stateCopy.loginData.isAuth = false;
-      stateCopy.isChangeLoginPage = false
+      stateCopy.isChangeLoginPage = false;
+      stateCopy.isChangeRegisterPage = false
       return stateCopy
     };
     case (action.type === SUBMIT_LOGIN): {
@@ -60,18 +61,18 @@ const LoginReducer = (state = initialState, action) => {
       let stateCopy = { ...state }
 
       if (action.errorData === '400') {
-        stateCopy.warningText = 'Заполните все поля!'
+        stateCopy.warningText = 'Fill in all the fields!'
       }
 
       if (action.errorData === '401') {
-        stateCopy.warningText = 'Логин или пароль ошибочны!'
+        stateCopy.warningText = 'Username or password are wrong!'
       }
 
       return stateCopy
     }
     case (action.type === ON_REGISTER_ERROR): {
       console.log(action)
-      let stateCopy = { ...state }  
+      let stateCopy = { ...state }
 
         // stateCopy.warningText = action
 

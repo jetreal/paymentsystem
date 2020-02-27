@@ -8,6 +8,7 @@ import {
   SET_RECIPIENT_NAME,
   SET_RECIPIENT_AMOUNT,
   ON_TRANSACTION_SUCCESS,
+  ON_TRANSACTION_FAil,
   GET_LIST_USER_TRANSACTION,
   REPEAT_TRANSACTION
 } from "../../types";
@@ -28,8 +29,14 @@ export function repeatTransaction(transData) {
     transData: transData
   }
 }
+function onTransactionFail(transData) {
+  return {
+    type: ON_TRANSACTION_FAil,
+    transData: transData
+  }
+}
 
-export function onTransactionSuccess(transData) {
+function onTransactionSuccess(transData) {
   return {
     type: ON_TRANSACTION_SUCCESS,
     transData: transData
@@ -40,15 +47,21 @@ export const onTransactionAsync = (transObj) => async (dispatch) => {
 
   try {
     const token = await loadState()
-    const allTransactionDataObj = await cleateTransaction(transObj, token)
-    console.log(allTransactionDataObj)
-    await dispatch(onTransactionSuccess(allTransactionDataObj))
-    await dispatch(onGetListUserTransactionAsync())
-    await dispatch(onFetchCurrentUserDataAsync())
+    const allTransactionDataObj = await cleateTransaction(transObj, 'token')
+    if (typeof allTransactionDataObj === 'string') {
+      if (allTransactionDataObj.trim() === 'UnauthorizedError: jwt malformed') {
+        await dispatch(onTransactionFail())
+      } 
+    }
   
+      await dispatch(onTransactionSuccess(allTransactionDataObj))
+      await dispatch(onGetListUserTransactionAsync())
+      await dispatch(onFetchCurrentUserDataAsync())
+ 
+    
   } catch (e) {
     console.log(e)
-    // dispatch(onFetchUserDataError());
+    // dispatch(onTransactionFail())
   }
 }
 
