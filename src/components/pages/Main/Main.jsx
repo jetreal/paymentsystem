@@ -7,20 +7,24 @@ import TransactionBlock from "./transactionBlock/TransactionBlock";
 import HistoryBlock from "./historyBlock/HistoryBlock";
 
 import { CSSTransition } from "react-transition-group";
+import Preloader from "../../common/Preloader/Preloader";
 
 export default props => {
+  let [isLoaded, setIsLoaded] = useState(false);
   let [appearHome, setAppearHome] = useState(
     !props.MainState.isTransactionButton
   );
   // const [age, setAge] = useState(42);
 
   useEffect(() => {
+    setIsLoaded(true)
     props.onFetchCurrentUserDataAsync();
     props.onGetListUserTransactionAsync();
   }, []);
 
   return (
-    <div className={style.main}>
+    <div className={style.main} onLoad={() => setIsLoaded(true)}>
+      <Preloader isLoaded={isLoaded} />
       {/* <NavLink to="/login"> */}
       <LoginButton name="logout" logout={props.onLogout} />
       {/* </NavLink> */}

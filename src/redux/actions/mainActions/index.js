@@ -47,7 +47,7 @@ export const onTransactionAsync = (transObj) => async (dispatch) => {
 
   try {
     const token = await loadState()
-    const allTransactionDataObj = await cleateTransaction(transObj, 'token')
+    const allTransactionDataObj = await cleateTransaction(transObj, token)
     if (typeof allTransactionDataObj === 'string') {
       if (allTransactionDataObj.trim() === 'UnauthorizedError: jwt malformed') {
         await dispatch(onTransactionFail())

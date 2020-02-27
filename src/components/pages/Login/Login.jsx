@@ -9,6 +9,7 @@ import { CSSTransition } from 'react-transition-group'
 
 
 export default (props) => {
+
 	const onSubmit = (data) => {
 		props.onSubmitLoginAsync(data)
 	}

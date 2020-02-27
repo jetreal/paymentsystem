@@ -5,14 +5,18 @@ import LoginContainer from './components/pages/Login/LoginContainer';
 
 import ContainerRegister from './components/pages/Register/ContainerRegister';
 import MainContainer from './components/pages/Main/MainContainer';
-import { Lines } from 'react-preloaders';
+
+
+
+
 
 function App() {
+
   return (
     <BrowserRouter>
-      <Lines color={'#f7f7f7'}>
+      
         <div className="App">
-
+          
           <Route path='/' exact
                   render={ () => <MainContainer />}/>
 
@@ -23,8 +27,8 @@ function App() {
                   render={ () => <ContainerRegister/>}/>
         </div>
 
-      </Lines>
-    </BrowserRouter>
+      </BrowserRouter>
+   
   );
 }
 
