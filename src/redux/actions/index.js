@@ -2,7 +2,8 @@
 import {
   SUBMIT_LOGIN,
   ON_LOGIN_ERROR,
-  LOGOUT, SUBMIT_REGISTER,
+  LOGOUT,
+  SUBMIT_REGISTER,
   ON_REGISTER_ERROR,
   CLEAR_FORM_WARNING
 } from "../types";
@@ -39,6 +40,7 @@ export function onLoginError(errorData) {
 export const onSubmitLoginAsync = (loginData) => async (dispatch) => {
   try {
     const response = await getToken(loginData)
+
     saveState(response.data.id_token)
     dispatch(onSubmitLogin(response))
     reset('login');
@@ -62,10 +64,15 @@ export function onSubmitError(errorData) {
   }
 }
 
-export const onSubmitRegisterAsync = (registerData) => async (dispatch) => {
+export const onSubmitRegisterAsync = (registerData, allUsers) => async (dispatch) => {
+  console.log(registerData, allUsers)
   try {
+    const match = allUsers.filter(user => user.name === registerData.username)
+    console.log(match)
+    console.log(match.length)
+
     const response = await registration(registerData)
-    console.log(response)
+    // console.log(response)
 
     dispatch(onSubmitRegister(response))
     // reset('register');

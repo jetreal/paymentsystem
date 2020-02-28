@@ -6,17 +6,22 @@ import { NavLink, Redirect } from "react-router-dom";
 import LoginButton from "../../common/LoginButton/LoginButton";
 import { CSSTransition } from "react-transition-group";
 
+
+
+
 export default props => {
   useEffect(() => {
     props.onClearFromWarning();
+    props.fetchAllSystemUsersAsync()
   }, []);
 
   if (props.LoginState.isChangeRegisterPage) {
     return <Redirect to="/login" />;
   }
-
-  const onRegisterSubmit = formData => {
-    props.onSubmitRegisterAsync(formData);
+  const allUsers = props.allSystemUsers
+ 
+  const onRegisterSubmit = (formData) => {
+    props.onSubmitRegisterAsync(formData, allUsers);
   };
 
   return (

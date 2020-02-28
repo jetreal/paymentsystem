@@ -4,6 +4,12 @@ export const required = value => {
   return '* Field is required'
 }
 
+export const onlyLetterAndNumber = value => {
+  if (!value.match(/[^a-zA-Zа-яА-Я0-9]/g)) return undefined;
+
+  return '* Invalid simbol'
+}
+
 export const availability = (value = 0, name, some) => {
 
   if ( +value <= +some.MainState.userData.balance) return undefined;

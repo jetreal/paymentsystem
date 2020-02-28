@@ -10,18 +10,38 @@ import {
   ON_TRANSACTION_SUCCESS,
   ON_TRANSACTION_FAil,
   GET_LIST_USER_TRANSACTION,
-  REPEAT_TRANSACTION
+  REPEAT_TRANSACTION,
+  FETCH_ALL_SYSTEM_USERS
 } from "../../types";
 import { loadState } from "../../localStorage";
-import { getLoggedUserInfo, getFilteredUserList, cleateTransaction, getListUserTransaction } from "../../../api/api";
+import { getLoggedUserInfo, getFilteredUserList, cleateTransaction, getListUserTransaction, getToken } from "../../../api/api";
 
 import {reset} from 'redux-form';
 
 
 
-// import { getToken } from "../../api/api";
 
-// import { loadState } from "../localStorage";
+
+export function setAllUsers(arrUsers) {
+  return {
+    type: FETCH_ALL_SYSTEM_USERS,
+    arrUsers
+  }
+}
+
+export const fetchAllSystemUsersAsync = () => async (dispatch) => {
+  const t = await getToken({"email": "dima@gmail.com", "password": "dima333"})
+  let allUsers = []
+  const arrAllChars = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m','1','2','3','4','5','6','7','8','9','0']
+  await arrAllChars.forEach(async (char) => {
+    const filterObj = {username: char}
+    const partOfUsers = await getFilteredUserList(filterObj, t.data.id_token)
+    partOfUsers.data.forEach(user => allUsers.push(user))
+  })
+  await dispatch(setAllUsers(allUsers))
+  console.log(allUsers)
+}
+
 
 export function repeatTransaction(transData) {
   return {
@@ -53,12 +73,10 @@ export const onTransactionAsync = (transObj) => async (dispatch) => {
         await dispatch(onTransactionFail())
       } 
     }
-  
       await dispatch(onTransactionSuccess(allTransactionDataObj))
       await dispatch(onGetListUserTransactionAsync())
       await dispatch(onFetchCurrentUserDataAsync())
  
-    
   } catch (e) {
     console.log(e)
     // dispatch(onTransactionFail())
@@ -98,13 +116,19 @@ function onGetUsers(recipients) {
 
 export const onFetchFilterRecipientAsync = (filteredChar) => async (dispatch) => {
   if (filteredChar.username != null) {
+    console.log(filteredChar)
     try {
       const token = await loadState()
       const filteredList = await getFilteredUserList(filteredChar, token)
+      if (typeof filteredList === 'string') {
+        if (filteredList.trim() === 'UnauthorizedError: jwt malformed') {
+          await dispatch(onTransactionFail())
+        } 
+      }
+
       dispatch(onGetUsers(filteredList))
     } catch (e) {
       console.log(e)
-      // dispatch(onFetchUserDataError());
     }
 
   }

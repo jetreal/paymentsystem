@@ -11,10 +11,12 @@ import { FETCH_USER_DATA,
      CLOSE_MENU,
      GET_LIST_USER_TRANSACTION,
      REPEAT_TRANSACTION,
-     ON_TRANSACTION_FAil
+     ON_TRANSACTION_FAil,
+     FETCH_ALL_SYSTEM_USERS
       } from "../types";
 
 let initialState = {
+  allSystemUsers: [],
   objOfSuccessTransaction: {},
   arrayOfTransactions: [],
   isTransationSuccess: false,
@@ -40,8 +42,12 @@ let initialState = {
 
 const MainReducer = (state = initialState, action) => {
   switch (true) {
+    case (action.type === FETCH_ALL_SYSTEM_USERS): {
+      let stateCopy = { ...state}
+      stateCopy.allSystemUsers = action.arrUsers
+      return stateCopy
+    }
     case (action.type === REPEAT_TRANSACTION): {
-
       let stateCopy = { ...state}
         stateCopy.recipient.name = stateCopy.successRecipient.name = action.transData.original.username
         stateCopy.recipient.amount = stateCopy.successRecipient.amount = Math.abs(action.transData.original.amount)

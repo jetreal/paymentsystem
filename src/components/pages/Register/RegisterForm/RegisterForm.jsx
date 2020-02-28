@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './form.module.sass'
 import {Field, reduxForm} from 'redux-form'
-import { validateLength, isEmail, required, passwordsMustMatch } from '../../../../utils/validators/validator'
+import { validateLength, isEmail, required, passwordsMustMatch, onlyLetterAndNumber } from '../../../../utils/validators/validator'
 import FormInput from '../../../common/FormInput'
 
 
@@ -23,7 +23,7 @@ const RegisterForm = (props) => {
             placeholder={"Username"} 
             className={style.regInput} 
             autoComplete="off"
-            validate={[required, maxNameLength]}
+            validate={[required, maxNameLength, onlyLetterAndNumber]}
           />
         </div>
 
