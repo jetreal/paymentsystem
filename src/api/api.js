@@ -7,9 +7,6 @@ export const instance = axios.create({
   headers: { 'content-type': 'application/x-www-form-urlencoded' },
 });
 
-
-
-
 export const registration = (regData) => {
   const data = regData;
   const option = {
@@ -48,17 +45,6 @@ export const getToken = (data) => {
   };
   return instance(option)
 }
-
-//     getTransaction(token) {
-//       const option = {
-//         url: '/api/protected/transactions',
-//         method: 'GET',
-//         headers: {
-//           Authorization: "bearer " + token.id_token
-//         }
-//       }; 
-//     return instance(option)
-//     },
 
 export const getLoggedUserInfo = (token) => {
   const option = {

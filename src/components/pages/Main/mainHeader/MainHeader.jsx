@@ -1,9 +1,19 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import style from './mainHeader.module.sass'
+import LoginButton from '../../../common/LoginButton/LoginButton';
 
 export default (props) => {
+  let [isLoad, setIsLoad] = useState(false)
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoad(isLoad = !isLoad)
+    }, 500)
+  }, []);
   return (
-    <header className={style.mainHeader}>
+    <header className={style.mainHeader}
+            style={{transform: !isLoad ? 'translateY(-200px)': 'translateY(0px)'}}
+    >
+      <LoginButton name="logout" logout={props.logout} />
       <div className={style.wellcome}>
         <p>Wellcome:
           <span>

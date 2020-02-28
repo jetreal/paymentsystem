@@ -65,14 +65,15 @@ export function onSubmitError(errorData) {
 }
 
 export const onSubmitRegisterAsync = (registerData, allUsers) => async (dispatch) => {
-  console.log(registerData, allUsers)
   try {
     const match = allUsers.filter(user => user.name === registerData.username)
-    console.log(match)
-    console.log(match.length)
+    if (match.length !== 0) {
+      await dispatch(onSubmitError('User with this name exist'))
+      return
+    }
 
     const response = await registration(registerData)
-    // console.log(response)
+
 
     dispatch(onSubmitRegister(response))
     // reset('register');

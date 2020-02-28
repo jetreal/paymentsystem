@@ -15,15 +15,11 @@ const maxLength = validateLength(4, 20);
 const maxNameLength = validateLength(null, 24);
 
 const lessThan = otherField => (value, previousValue, allValues) => {
-  // console.log(otherField)
-  // console.log()
-  // console.log(previousValue)
-  // console.log(allValues)
   return value < 10001 ? value : previousValue;
 };
 
 const userForm = props => {
-  // console.log(props.MainState.userData.balance)
+
   return (
     <div>
       <form onSubmit={props.handleSubmit}>
@@ -50,7 +46,6 @@ const userForm = props => {
               type="submit"
               className={style.btn}
               value="set"
-              // onClick={props.collectUserData}
               disabled={props.pristine || props.submitting}
               style={
                 props.pristine || props.submitting || props.invalid

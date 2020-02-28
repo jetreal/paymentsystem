@@ -10,6 +10,7 @@ import { CSSTransition } from "react-transition-group";
 import Preloader from "../../common/Preloader/Preloader";
 
 export default props => {
+  
   let [isLoaded, setIsLoaded] = useState(false);
   let [appearHome, setAppearHome] = useState(
     !props.MainState.isTransactionButton
@@ -26,12 +27,13 @@ export default props => {
     <div className={style.main} onLoad={() => setIsLoaded(true)}>
       <Preloader isLoaded={isLoaded} />
       {/* <NavLink to="/login"> */}
-      <LoginButton name="logout" logout={props.onLogout} />
       {/* </NavLink> */}
       <MainHeader
+        logout={props.onLogout}
         name={props.MainState.userData.name}
         balance={props.MainState.userData.balance}
       />
+      
 
       <ButtonSection
         showCreateSection={props.onButtonCreateTransaction}

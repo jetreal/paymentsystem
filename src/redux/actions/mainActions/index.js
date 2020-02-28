@@ -39,7 +39,6 @@ export const fetchAllSystemUsersAsync = () => async (dispatch) => {
     partOfUsers.data.forEach(user => allUsers.push(user))
   })
   await dispatch(setAllUsers(allUsers))
-  console.log(allUsers)
 }
 
 
@@ -116,7 +115,6 @@ function onGetUsers(recipients) {
 
 export const onFetchFilterRecipientAsync = (filteredChar) => async (dispatch) => {
   if (filteredChar.username != null) {
-    console.log(filteredChar)
     try {
       const token = await loadState()
       const filteredList = await getFilteredUserList(filteredChar, token)

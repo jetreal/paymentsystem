@@ -56,7 +56,7 @@ const LoginReducer = (state = initialState, action) => {
       return stateCopy
     }
     case (action.type === SUBMIT_REGISTER): {
-      
+
       let stateCopy = { ...state }
       stateCopy.warningText = action.servResponce
 
@@ -74,17 +74,14 @@ const LoginReducer = (state = initialState, action) => {
       }
 
       if (action.errorData === '401') {
-        stateCopy.warningText = 'Username or password are wrong!'
+        stateCopy.warningText = 'Invalid Username or password!'
       }
 
       return stateCopy
     }
     case (action.type === ON_REGISTER_ERROR): {
-      console.log(action)
       let stateCopy = { ...state }
-
-      // stateCopy.warningText = action
-
+      stateCopy.warningText = action.errorData
       return stateCopy
     }
     default:

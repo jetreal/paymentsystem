@@ -2,7 +2,6 @@ import React from "react";
 import style from "./preloader.module.sass";
 
 export default (props) => {
-  console.log(props.isLoaded)
   return (
     <div
       className={style.wrapperImage}

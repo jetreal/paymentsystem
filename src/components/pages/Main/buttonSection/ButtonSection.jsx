@@ -1,24 +1,36 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import style from './buttonSection.module.sass'
-import { StyledButton } from './styledButton'
+import { StyledButtonLeft, StyledButtonRight } from './styledButton'
+import { CSSTransition } from 'react-transition-group'
+
+
 
 export default (props) => {
+  let [isLoad, setIsLoad] = useState(false)
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoad(isLoad = !isLoad)
+    }, 500)
+  }, []);
   return (
     <div className={style.wrapperButtonSection}>
       <div className={style.btnLeft}>
-        <StyledButton
+        <StyledButtonLeft
           onClick={props.showHistorySection}
           isActive={props.isTransactionBlockActive}
+          isLoad={isLoad}
         >
           {!props.isHistoryBlockActive ? 'Transaction History' : 'close'}
-        </StyledButton>
+        </StyledButtonLeft>
       </div>
       <div className={style.btnRight}>
-        <StyledButton
+        <StyledButtonRight
           onClick={ props.showCreateSection }
           isActive={props.isHistoryBlockActive}
-        >{!props.isTransactionBlockActive ? 'Create new transaction' : 'close'}
-        </StyledButton>
+          isLoad={isLoad}
+        >
+          {!props.isTransactionBlockActive ? 'Create new transaction' : 'close'}
+        </StyledButtonRight>
       </div>
     </div>
   )

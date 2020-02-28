@@ -47,7 +47,19 @@ export default props => {
             onChange={props.onClearFromWarning}
           />
           {props.LoginState.warningText && (
+            <CSSTransition
+            in={true}
+            appear={true}
+            timeout={{
+              appear: 1000,
+              enter: 1000,
+              exit: 1000
+            }}
+            classNames="fadeRegister"
+          > 
             <FormWarning warningText={props.LoginState.warningText} />
+          </CSSTransition>
+            
           )}
         </div>
       </CSSTransition>
