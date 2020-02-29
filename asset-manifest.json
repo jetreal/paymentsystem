@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/paymentsystem/static/css/main.afb3b4c2.chunk.css",
-    "main.js": "/paymentsystem/static/js/main.b1d0a4ab.chunk.js",
-    "main.js.map": "/paymentsystem/static/js/main.b1d0a4ab.chunk.js.map",
+    "main.js": "/paymentsystem/static/js/main.cd31d22d.chunk.js",
+    "main.js.map": "/paymentsystem/static/js/main.cd31d22d.chunk.js.map",
     "runtime-main.js": "/paymentsystem/static/js/runtime-main.930bbfa0.js",
     "runtime-main.js.map": "/paymentsystem/static/js/runtime-main.930bbfa0.js.map",
-    "static/js/2.bd356e1f.chunk.js": "/paymentsystem/static/js/2.bd356e1f.chunk.js",
-    "static/js/2.bd356e1f.chunk.js.map": "/paymentsystem/static/js/2.bd356e1f.chunk.js.map",
+    "static/js/2.8181aeb4.chunk.js": "/paymentsystem/static/js/2.8181aeb4.chunk.js",
+    "static/js/2.8181aeb4.chunk.js.map": "/paymentsystem/static/js/2.8181aeb4.chunk.js.map",
     "index.html": "/paymentsystem/index.html",
-    "precache-manifest.480cfa2251dcfa23583aa65d91168b12.js": "/paymentsystem/precache-manifest.480cfa2251dcfa23583aa65d91168b12.js",
+    "precache-manifest.cc081f9b4179917399a2cab4e55afc95.js": "/paymentsystem/precache-manifest.cc081f9b4179917399a2cab4e55afc95.js",
     "service-worker.js": "/paymentsystem/service-worker.js",
     "static/css/main.afb3b4c2.chunk.css.map": "/paymentsystem/static/css/main.afb3b4c2.chunk.css.map",
-    "static/js/2.bd356e1f.chunk.js.LICENSE.txt": "/paymentsystem/static/js/2.bd356e1f.chunk.js.LICENSE.txt"
+    "static/js/2.8181aeb4.chunk.js.LICENSE.txt": "/paymentsystem/static/js/2.8181aeb4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.930bbfa0.js",
-    "static/js/2.bd356e1f.chunk.js",
+    "static/js/2.8181aeb4.chunk.js",
     "static/css/main.afb3b4c2.chunk.css",
-    "static/js/main.b1d0a4ab.chunk.js"
+    "static/js/main.cd31d22d.chunk.js"
   ]
 }
