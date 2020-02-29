@@ -5,6 +5,7 @@ import LoginContainer from './components/pages/Login/LoginContainer';
 
 import ContainerRegister from './components/pages/Register/ContainerRegister';
 import MainContainer from './components/pages/Main/MainContainer';
+import { propSatisfies } from 'ramda';
 
 
 
@@ -13,10 +14,9 @@ import MainContainer from './components/pages/Main/MainContainer';
 function App() {
 
   return (
-    <HashRouter>
-      <Switch>
-        <div className="App">
-
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
           <Route path='/' exact
             render={() => <MainContainer />} />
 
@@ -25,9 +25,9 @@ function App() {
 
           <Route path='/register'
             render={() => <ContainerRegister />} />
-        </div>
-      </Switch>
-    </HashRouter>
+        </Switch>
+      </div>
+    </BrowserRouter>
 
   );
 }

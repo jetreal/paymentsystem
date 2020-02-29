@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import style from "./main.module.sass";
-import LoginButton from "../../common/LoginButton/LoginButton";
 import MainHeader from "./mainHeader/MainHeader";
 import ButtonSection from "./buttonSection/ButtonSection";
 import TransactionBlock from "./transactionBlock/TransactionBlock";

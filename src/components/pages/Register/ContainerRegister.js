@@ -7,7 +7,7 @@ import { fetchAllSystemUsersAsync } from '../../../redux/actions/mainActions';
 
 
 let mapStateToProps = (state) => {
-  // console.log(state)
+
   return {
     allSystemUsers: state.MainReducer.allSystemUsers,
     LoginState: state.LoginReducer,
