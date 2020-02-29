@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/paymentsystem/static/css/main.afb3b4c2.chunk.css",
-    "main.js": "/paymentsystem/static/js/main.0a0d1091.chunk.js",
-    "main.js.map": "/paymentsystem/static/js/main.0a0d1091.chunk.js.map",
+    "main.js": "/paymentsystem/static/js/main.954c3c03.chunk.js",
+    "main.js.map": "/paymentsystem/static/js/main.954c3c03.chunk.js.map",
     "runtime-main.js": "/paymentsystem/static/js/runtime-main.930bbfa0.js",
     "runtime-main.js.map": "/paymentsystem/static/js/runtime-main.930bbfa0.js.map",
     "static/js/2.4430ca38.chunk.js": "/paymentsystem/static/js/2.4430ca38.chunk.js",
     "static/js/2.4430ca38.chunk.js.map": "/paymentsystem/static/js/2.4430ca38.chunk.js.map",
     "index.html": "/paymentsystem/index.html",
-    "precache-manifest.5b43dde1ad7259ccfd64f7848171322f.js": "/paymentsystem/precache-manifest.5b43dde1ad7259ccfd64f7848171322f.js",
+    "precache-manifest.5df99749ae6a1ebad939235a2c768992.js": "/paymentsystem/precache-manifest.5df99749ae6a1ebad939235a2c768992.js",
     "service-worker.js": "/paymentsystem/service-worker.js",
     "static/css/main.afb3b4c2.chunk.css.map": "/paymentsystem/static/css/main.afb3b4c2.chunk.css.map",
     "static/js/2.4430ca38.chunk.js.LICENSE.txt": "/paymentsystem/static/js/2.4430ca38.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.930bbfa0.js",
     "static/js/2.4430ca38.chunk.js",
     "static/css/main.afb3b4c2.chunk.css",
-    "static/js/main.0a0d1091.chunk.js"
+    "static/js/main.954c3c03.chunk.js"
   ]
 }
