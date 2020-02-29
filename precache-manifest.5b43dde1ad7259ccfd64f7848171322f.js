@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8d915f660954f6b703fb1584890aa4cb",
+    "revision": "70658ea81399126d2a35b4ceefc706d7",
     "url": "/paymentsystem/index.html"
   },
   {
-    "revision": "f012568547806bc9d2ad",
+    "revision": "cb07751b56c0344e00e9",
     "url": "/paymentsystem/static/css/main.afb3b4c2.chunk.css"
   },
   {
-    "revision": "a32a43480bf2c1c0bef3",
-    "url": "/paymentsystem/static/js/2.fd62b7cb.chunk.js"
+    "revision": "e41e78bdeb8bc12d2555",
+    "url": "/paymentsystem/static/js/2.4430ca38.chunk.js"
   },
   {
     "revision": "928d7b5eb39d16fe9a880722c974b51e",
-    "url": "/paymentsystem/static/js/2.fd62b7cb.chunk.js.LICENSE.txt"
+    "url": "/paymentsystem/static/js/2.4430ca38.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f012568547806bc9d2ad",
-    "url": "/paymentsystem/static/js/main.3ef3b692.chunk.js"
+    "revision": "cb07751b56c0344e00e9",
+    "url": "/paymentsystem/static/js/main.0a0d1091.chunk.js"
   },
   {
     "revision": "fde4d63f63c228f1216f",
