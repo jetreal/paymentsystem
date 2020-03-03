@@ -22,8 +22,8 @@ let reducers = combineReducers({
 let store = createStore(
   reducers,
   applyMiddleware(...middleware)
-  );
-  
+);
+
 sagaMiddleware.run(rootSaga)
 
 window.store = store;

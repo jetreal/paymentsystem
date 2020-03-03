@@ -6,21 +6,20 @@ import { NavLink, Redirect } from "react-router-dom";
 import LoginButton from "../../common/LoginButton/LoginButton";
 import { CSSTransition } from "react-transition-group";
 
-
-
-
 export default props => {
+
+const {onClearFromWarning, fetchAllSystemUsersAsync} = props
   useEffect(() => {
-    props.onClearFromWarning();
-    props.fetchAllSystemUsersAsync()
-  }, []);
+    onClearFromWarning();
+    fetchAllSystemUsersAsync();
+  }, [onClearFromWarning, fetchAllSystemUsersAsync]);
 
   if (props.LoginState.isChangeRegisterPage) {
     return <Redirect to="/login" />;
   }
-  const allUsers = props.allSystemUsers
- 
-  const onRegisterSubmit = (formData) => {
+  const allUsers = props.allSystemUsers;
+
+  const onRegisterSubmit = formData => {
     props.onSubmitRegisterAsync(formData, allUsers);
   };
 
@@ -48,18 +47,17 @@ export default props => {
           />
           {props.LoginState.warningText && (
             <CSSTransition
-            in={true}
-            appear={true}
-            timeout={{
-              appear: 1000,
-              enter: 1000,
-              exit: 1000
-            }}
-            classNames="fadeRegister"
-          > 
-            <FormWarning warningText={props.LoginState.warningText} />
-          </CSSTransition>
-            
+              in={true}
+              appear={true}
+              timeout={{
+                appear: 1000,
+                enter: 1000,
+                exit: 1000
+              }}
+              classNames="fadeRegister"
+            >
+              <FormWarning warningText={props.LoginState.warningText} />
+            </CSSTransition>
           )}
         </div>
       </CSSTransition>

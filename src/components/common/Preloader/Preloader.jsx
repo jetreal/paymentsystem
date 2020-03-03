@@ -8,7 +8,6 @@ export default (props) => {
       style={{ opacity: !props.isLoaded ? "1" : "0",
               zIndex: !props.isLoaded ? '2' : '-1' }}
     >
-      {/* <img src="images/bg.jpg" /> */}
     </div>
   );
 };

@@ -1,16 +1,12 @@
-import React from 'react'
-import style from './formWarning.module.sass'
+import React from "react";
+import style from "./formWarning.module.sass";
 
-
-const FormWarning = (props) => {
-
-	return (
+const FormWarning = props => {
+  return (
     <div className={style.formWarning}>
-			<p>
-				{props.warningText}
-			</p>
-		</div>
-	)
-}
+      <p>{props.warningText}</p>
+    </div>
+  );
+};
 
-export default FormWarning
+export default FormWarning;

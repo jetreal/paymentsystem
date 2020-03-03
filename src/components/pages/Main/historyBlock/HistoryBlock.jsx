@@ -1,45 +1,12 @@
 import React from "react";
 import style from "./historyBlock.module.sass";
-import styled from "styled-components";
 import {
   useTable,
-  useGroupBy,
-  useFilters,
   useSortBy,
-  useExpanded,
   usePagination
 } from "react-table";
-// import 'react-table/react-table.css'
+import { Styles } from "./historyStyled";
 
-const Styles = styled.div`
-  padding: 1rem;
-
-  table {
-    margin: 0 auto;
-    border-spacing: 0;
-    border: 1px solid green;
-
-    tr {
-      :last-child {
-        td {
-          border-bottom: 0;
-        }
-      }
-    }
-
-    th,
-    td {
-      margin: 0;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-      border-right: 1px solid black;
-
-      :last-child {
-        border-right: 0;
-      }
-    }
-  }
-`;
 
 export default props => {
   const columns = React.useMemo(
@@ -79,11 +46,9 @@ export default props => {
     const {
       getTableProps,
       getTableBodyProps,
-
       headerGroups,
-      rows,
+      // rows, 
       prepareRow,
-
       page, // Instead of using 'rows', we'll use page,
       // which has only the rows for the active page
 

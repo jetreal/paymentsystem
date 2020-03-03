@@ -1,17 +1,14 @@
 import React from "react";
 import style from "./userForm.module.sass";
 import { Field, reduxForm } from "redux-form";
-// import { validateLength, isEmail, required, passwordsMustMatch } from '../../../../utils/validators/validator'
 import FormInput from "../../../../common/FormInput";
 import {
   validateLength,
-  required,
   availability,
   number
 } from "../../../../../utils/validators/validator";
 import { connect } from "react-redux";
 
-const maxLength = validateLength(4, 20);
 const maxNameLength = validateLength(null, 24);
 
 const lessThan = otherField => (value, previousValue, allValues) => {
@@ -19,7 +16,6 @@ const lessThan = otherField => (value, previousValue, allValues) => {
 };
 
 const userForm = props => {
-
   return (
     <div>
       <form onSubmit={props.handleSubmit}>
@@ -62,7 +58,6 @@ const userForm = props => {
 };
 
 let UserReduxForm = reduxForm({
-  // a unique name for the form
   form: "getUser",
   initialValues: {
     min: 0,

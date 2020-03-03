@@ -1,4 +1,3 @@
-
 import {
   SUBMIT_LOGIN,
   ON_LOGIN_ERROR,
@@ -46,7 +45,7 @@ export const onSubmitLoginAsync = (loginData) => async (dispatch) => {
     reset('login');
   } catch (e) {
     dispatch(onLoginError(e.message.slice(-3)))
-    // dispatch(reset('login'));
+    console.log(e)
   }
 }
 
@@ -74,13 +73,9 @@ export const onSubmitRegisterAsync = (registerData, allUsers) => async (dispatch
 
     const response = await registration(registerData)
 
-
     dispatch(onSubmitRegister(response))
     // reset('register');
   } catch (e) {
     console.log(e)
-    // dispatch(onSubmitError(response))
-    // dispatch(onSubmitError(response))
-    // reset('login');
   }
 }

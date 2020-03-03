@@ -5,8 +5,6 @@ import style from '../transactionBlock.module.sass'
 import { RadioField } from '../../../../common/RadioButton/RadioButton'
 
 
-
-
 let checkUserForm = (props) => {
 
   return (

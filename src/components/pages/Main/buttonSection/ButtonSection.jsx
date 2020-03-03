@@ -1,15 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import style from './buttonSection.module.sass'
 import { StyledButtonLeft, StyledButtonRight } from './styledButton'
-import { CSSTransition } from 'react-transition-group'
-
 
 
 export default (props) => {
   let [isLoad, setIsLoad] = useState(false)
   useEffect(() => {
     setTimeout(() => {
-      setIsLoad(isLoad = !isLoad)
+      setIsLoad(true)
     }, 500)
   }, []);
   return (

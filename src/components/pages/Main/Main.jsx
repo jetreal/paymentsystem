@@ -7,32 +7,29 @@ import HistoryBlock from "./historyBlock/HistoryBlock";
 
 import { CSSTransition } from "react-transition-group";
 import Preloader from "../../common/Preloader/Preloader";
+import WarningMessage from "./warningMesageSusses/WarningMessage";
+import WarningMessageFail from "./warningFailMessage/WarningMessageFail";
 
 export default props => {
-  
   let [isLoaded, setIsLoaded] = useState(false);
-  let [appearHome, setAppearHome] = useState(
-    !props.MainState.isTransactionButton
-  );
-  // const [age, setAge] = useState(42);
+
+  const {onFetchCurrentUserDataAsync, onGetListUserTransactionAsync} = props
 
   useEffect(() => {
-    setIsLoaded(true)
-    props.onFetchCurrentUserDataAsync();
-    props.onGetListUserTransactionAsync();
-  }, []);
+    onFetchCurrentUserDataAsync();
+    onGetListUserTransactionAsync();
+    setIsLoaded(true);
+  }, [onFetchCurrentUserDataAsync, onGetListUserTransactionAsync]);
 
   return (
-    <div className={style.main} onLoad={() => setIsLoaded(true)}>
+    <div className={style.main}>
       <Preloader isLoaded={isLoaded} />
-      {/* <NavLink to="/login"> */}
-      {/* </NavLink> */}
+
       <MainHeader
         logout={props.onLogout}
         name={props.MainState.userData.name}
         balance={props.MainState.userData.balance}
       />
-      
 
       <ButtonSection
         showCreateSection={props.onButtonCreateTransaction}
@@ -42,7 +39,7 @@ export default props => {
       />
       {props.MainState.isTransactionButton && (
         <CSSTransition
-          in={appearHome}
+          in={!props.MainState.isTransactionButton}
           appear={true}
           timeout={{
             appear: 2000,
@@ -66,42 +63,21 @@ export default props => {
       {!props.MainState.isTransactionButton &&
         !props.MainState.isHistoryButton &&
         props.MainState.isTransationSuccess && (
-          <div className={style.congratulationWrap}>
-            <br />
-            <br />
-            Transaction success !!!
-            <br />
-            <h3>
-              You sent a transaction to the recipient
-              <br />
-              with the name:
-              <br />
-              <span>{props.MainState.successRecipient.name}</span>, in the
-              amount of
-              <span>{props.MainState.successRecipient.amount}</span>pw.
-            </h3>
-          </div>
+          <WarningMessage
+            name={props.MainState.successRecipient.name}
+            amount={props.MainState.successRecipient.amount}
+          />
         )}
 
       {!props.MainState.isTransactionButton &&
         !props.MainState.isHistoryButton &&
         props.MainState.isTransationFailed && (
-          <div className={style.congratulationWrap} style={{color: '#0078D7'}}>
-            <br />
-            <br />
-            Transaction failed !!!
-            <br />
-            <h3>
-              You are not logged in. Session timed out.
-              <br />
-              Pleace login again!
-            </h3>
-          </div>
+          <WarningMessageFail />
         )}
 
       {props.MainState.isHistoryButton && (
         <CSSTransition
-          in={appearHome}
+          in={!props.MainState.isTransactionButton}
           appear={true}
           timeout={{
             appear: 2000,
@@ -116,11 +92,6 @@ export default props => {
           />
         </CSSTransition>
       )}
-
-      {/* <p>id: {props.MainState.userData.id}</p>
-      <p>name: {props.MainState.userData.name}</p>
-      <p>email: {props.MainState.userData.email}</p>
-      <p>balance: {props.MainState.userData.balance}</p> */}
     </div>
   );
 };

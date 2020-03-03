@@ -2,7 +2,6 @@ import React, {useRef} from 'react'
 
 export default ({input, meta, ...props}) => {
   const myRef = useRef(null);
-  const resRef = myRef.current
   return (
     <div >
       <input ref={myRef} {...input} {...props}

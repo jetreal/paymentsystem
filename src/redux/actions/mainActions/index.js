@@ -15,14 +15,10 @@ import {
 } from "../../types";
 import { loadState } from "../../localStorage";
 import { getLoggedUserInfo, getFilteredUserList, cleateTransaction, getListUserTransaction, getToken } from "../../../api/api";
-
-import {reset} from 'redux-form';
-
+import { reset } from 'redux-form';
 
 
-
-
-export function setAllUsers(arrUsers) {
+function setAllUsers(arrUsers) {
   return {
     type: FETCH_ALL_SYSTEM_USERS,
     arrUsers
@@ -30,17 +26,16 @@ export function setAllUsers(arrUsers) {
 }
 
 export const fetchAllSystemUsersAsync = () => async (dispatch) => {
-  const t = await getToken({"email": "dima@gmail.com", "password": "dima333"})
+  const t = await getToken({ "email": "dima@gmail.com", "password": "dima333" })
   let allUsers = []
-  const arrAllChars = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m','1','2','3','4','5','6','7','8','9','0']
+  const arrAllChars = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
   await arrAllChars.forEach(async (char) => {
-    const filterObj = {username: char}
+    const filterObj = { username: char }
     const partOfUsers = await getFilteredUserList(filterObj, t.data.id_token)
     partOfUsers.data.forEach(user => allUsers.push(user))
   })
   await dispatch(setAllUsers(allUsers))
 }
-
 
 export function repeatTransaction(transData) {
   return {
@@ -48,6 +43,7 @@ export function repeatTransaction(transData) {
     transData: transData
   }
 }
+
 function onTransactionFail(transData) {
   return {
     type: ON_TRANSACTION_FAil,
@@ -70,15 +66,14 @@ export const onTransactionAsync = (transObj) => async (dispatch) => {
     if (typeof allTransactionDataObj === 'string') {
       if (allTransactionDataObj.trim() === 'UnauthorizedError: jwt malformed') {
         await dispatch(onTransactionFail())
-      } 
+      }
     }
-      await dispatch(onTransactionSuccess(allTransactionDataObj))
-      await dispatch(onGetListUserTransactionAsync())
-      await dispatch(onFetchCurrentUserDataAsync())
- 
+    await dispatch(onTransactionSuccess(allTransactionDataObj))
+    await dispatch(onGetListUserTransactionAsync())
+    await dispatch(onFetchCurrentUserDataAsync())
+
   } catch (e) {
     console.log(e)
-    // dispatch(onTransactionFail())
   }
 }
 
@@ -100,10 +95,7 @@ export function setRecipientName(recipientName) {
 export const onClearRecipient = () => async (dispatch) => {
   await dispatch(reset('getUser'));
   await dispatch(reset('checkUser'));
-  dispatch({type: ON_CLEAR_RECIPIENT_LIST})
-  // return {
-  //   type: ON_CLEAR_RECIPIENT_LIST
-  // }
+  dispatch({ type: ON_CLEAR_RECIPIENT_LIST })
 }
 
 function onGetUsers(recipients) {
@@ -121,14 +113,13 @@ export const onFetchFilterRecipientAsync = (filteredChar) => async (dispatch) =>
       if (typeof filteredList === 'string') {
         if (filteredList.trim() === 'UnauthorizedError: jwt malformed') {
           await dispatch(onTransactionFail())
-        } 
+        }
       }
 
       dispatch(onGetUsers(filteredList))
     } catch (e) {
       console.log(e)
     }
-
   }
 }
 
@@ -163,6 +154,7 @@ export const onFetchCurrentUserDataAsync = () => async (dispatch) => {
     dispatch(onFetchUserData(userData))
   } catch (e) {
     dispatch(onFetchUserDataError());
+    console.log(e)
   }
 }
 
@@ -170,7 +162,7 @@ export const onGetListUserTransactionAsync = () => async (dispatch) => {
   try {
     const token = await loadState()
     const arrTransactions = await getListUserTransaction(token)
-    dispatch({type: GET_LIST_USER_TRANSACTION, arrTransactions})
+    dispatch({ type: GET_LIST_USER_TRANSACTION, arrTransactions })
   } catch (e) {
     console.log(e)
   }

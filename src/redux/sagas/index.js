@@ -9,12 +9,6 @@ export function* watchIncrementAsync() {
   yield takeEvery('ON_TRANSACTION_SUCCESS', clearTransWarnings)
   yield takeEvery('ON_TRANSACTION_FAil', onTransactionFail)
   yield takeEvery('LOGOUT', onLogout)
-
-
-
-  // yield takeEvery('RIGHT_BUTTON_CLICK', showReactText)
-  // yield takeEvery(['INITIAL_SLIDE_LEFT', 'INITIAL_SLIDE_RIGHT' ], unblockSlider)
-
 }
 
 export function* onTransactionFail() {
@@ -36,17 +30,15 @@ export function* delayChangeRegisterPage() {
   yield delay(1150)
   yield put({ type: 'CHANGE_REGISTERPAGE_WITH_DELAY' })
   yield put({ type: 'LOGOUT' })
-  // yield put({type: 'CHANGE_TV'})
 }
+
 export function* delayChangeLoginPage() {
   yield delay(1150)
   yield put({ type: 'CHANGE_LOGINPAGE_WITH_DELAY' })
-  // yield put({type: 'CHANGE_TV'})
 }
 
 export default function* rootSaga() {
   yield all([
-    // helloSaga,
     watchIncrementAsync()
   ])
 }
