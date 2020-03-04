@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import style from "./login.module.sass";
 import FormContainer from "./LoginForm/LoginForm";
 import FormWarning from "../Register/FormWarning/FormWarning";
@@ -7,6 +7,11 @@ import LoginButton from "../../common/LoginButton/LoginButton";
 import { CSSTransition } from "react-transition-group";
 
 export default props => {
+  const { onClearFromWarning } = props;
+  useEffect(() => {
+    onClearFromWarning();
+  }, [onClearFromWarning]);
+
   const onSubmit = data => {
     props.onSubmitLoginAsync(data);
   };

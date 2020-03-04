@@ -26,7 +26,7 @@ let store = createStore(
 
 sagaMiddleware.run(rootSaga)
 
-window.store = store;
+// window.store = store;
 
 export default store;
 

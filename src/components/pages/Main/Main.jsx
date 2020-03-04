@@ -39,7 +39,7 @@ export default props => {
       />
       {props.MainState.isTransactionButton && (
         <CSSTransition
-          in={!props.MainState.isTransactionButton}
+          in={true}
           appear={true}
           timeout={{
             appear: 2000,
@@ -77,14 +77,14 @@ export default props => {
 
       {props.MainState.isHistoryButton && (
         <CSSTransition
-          in={!props.MainState.isTransactionButton}
+          in={true}
           appear={true}
           timeout={{
             appear: 2000,
             enter: 1000,
             exit: 1000
           }}
-          classNames="fade"
+          classNames="fadeRegister"
         >
           <HistoryBlock
             arrayOfTransactions={props.MainState.arrayOfTransactions}
